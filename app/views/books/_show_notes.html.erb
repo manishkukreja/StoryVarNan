@@ -1,0 +1,22 @@
+<% if can? :edit, @book %>
+  <div class="actions book_actions"><%= link_to "Edit", edit_book_path(@book) %></div>
+<% end %>
+
+<!-- <div class="extra_nav"> -->
+   <%# if @book.asciicasts? %>
+      <!-- <span class="asciicasts">
+      <%#= image_tag "icons/asciicasts.png", :size => "12x15", :class => "icon" %>
+       <%#= link_to "Read on ASCIIcasts", "http://asciicasts.com/books/#{@book.to_param}" %>
+    #</span>
+   <%# end %>
+   <%# if @book.file_sizes && @book.file_sizes["zip"] %>
+      # <span class="browse_code">
+      <%#= image_tag "icons/browse_code.png", :size => "22x21", :class => "icon" %>
+       <%#= link_to "Browse Source Code", "http://github.com/railscasts/book-#{@book.position}" %>
+    # </span> -->
+   <%#end %>
+   </br>
+
+<div class="show_notes">
+  <%=  @book.notes %>
+</div>

@@ -1,0 +1,66 @@
+<% title "Recent Comments" %>
+
+<div class="content">
+  <%= form_tag comments_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :comment_search, params[:comment_search] %>
+      <%= submit_tag "Search Comments", :name => nil %>
+    </p>
+  <% end %>
+  <div id="comments">
+    <%= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %>
+    <%= render @comments %>
+    <%= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Book</th>
+    <th>Content</th>
+    <th>F name</th>
+    <th>L name</th>
+    <th>Email</th>
+    <th>User</th>
+    <th>Referrer</th>
+    <th>User ip</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment.book_id %></td>
+    <td><%= comment.content %></td>
+    <td><%= comment.f_name %></td>
+    <td><%= comment.l_name %></td>
+    <td><%= comment.email %></td>
+    <td><%= comment.user_id %></td>
+    <td><%= comment.referrer %></td>
+    <td><%= comment.user_ip %></td>
+    <td><%= comment.position %></td>
+    <td><%= link_to 'Show', comment %></td>
+    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br /> -->
+<%= link_to 'New Comment', new_comment_path %>
