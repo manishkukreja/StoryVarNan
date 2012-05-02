@@ -2,7 +2,7 @@ namespace :import_book do
   
   task :user => :environment do
     User.delete_all
-    User.create(:username => "admin", :email=> "manishkukrjea@gmail.com", :first_name => "manish", :last_name => "kukreja", :email_on_reply => "true", :site_url => "www.google.com")
+    User.create(:username => "admin", :email=> "manishkukrja@gmail.com", :first_name => "manish", :last_name => "kukreja", :email_on_reply => "true", :site_url => "www.google.com")
   end
   
   task :book => :environment do
