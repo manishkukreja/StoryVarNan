@@ -1,10 +1,24 @@
 Bookshelf::Application.routes.draw do
   
+  resources :taggings
+  
+  get "taggings/index"
+
+  get "taggings/edit"
+
+  get "taggings/show"
+
+  get "taggings/new"
+
+  get "taggings/destroy"
+
   resources :feedback_messages
 
   resources :comments
   
   resources :user_sessions
+  
+  
 
   resources :users
 

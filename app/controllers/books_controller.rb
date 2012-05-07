@@ -1,7 +1,5 @@
  class BooksController < ApplicationController
 
-#before_filter :require_user, :except => :index
-#before_filter :authorize, :only => [:new , :edit ,:update]
   
   def index
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]
