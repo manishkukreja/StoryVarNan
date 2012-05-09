@@ -1,0 +1,31 @@
+<h1>Taggings</h1>
+
+<table>
+  <tr>
+  	<th>Tagging ID</th>
+  	<th></th>
+    <th>Book ID</th>
+    <th></th>
+    <th><th>Tag ID</th></th>
+    <th></th>
+  </tr>
+
+<% @taggings.each do |tagging| %>
+  <tr>
+  
+  	<td><%= tagging.id %></td>
+  	<th></th>
+    <td><%= tagging.book_id %></td>
+    <th></th>
+    <th></th>
+    <td><%= tagging.tag_id %></td>
+    <th></th>
+    <%if can? :update, :taggings%>
+    <td><%= link_to 'Show', tagging %></td>
+    <td><%= link_to 'Edit', edit_tagging_path(tagging) %></td>
+    <td><%= link_to 'Destroy', tagging, :confirm => 'Are you sure?', :method => :delete %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+
