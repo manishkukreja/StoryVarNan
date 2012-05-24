@@ -1,0 +1,25 @@
+<%= form_for(@terminology) do |f| %>
+  <% if @terminology.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@terminology.errors.count, "error") %> prohibited this terminology from being saved:</h2>
+
+      <ul>
+      <% @terminology.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :book_id %><br />
+    <%= f.text_field :book_id %>
+  </div>
+  <div class="field">
+    <%= f.label :language_id %><br />
+    <%= f.text_field :language_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

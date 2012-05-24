@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :audio, AudioUploader
   has_many :comments
+  has_many :languages
   
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
@@ -16,7 +17,7 @@ class Book < ActiveRecord::Base
   
   def self.search(search)
     if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+      find(:all, :conditionds => ['name LIKE ?', "%#{search}%"])
     else
       find(:all)
     end
@@ -38,6 +39,7 @@ class Book < ActiveRecord::Base
   def self.search_published(query, tag_id = nil)
     if APP_CONFIG['thinking_sphinx']
       with = tag_id ? {:tag_ids => tag_id.to_i} : {}
+      
       search(query, :conditions => { :published_at => 0..Time.now.utc.to_i }, :with => with,
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else

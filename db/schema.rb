@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425035636) do
+ActiveRecord::Schema.define(:version => 20120517130355) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120425035636) do
     t.integer  "seconds"
     t.boolean  "asciibooks"
     t.string   "image_link"
+    t.integer  "language_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -59,6 +60,12 @@ ActiveRecord::Schema.define(:version => 20120425035636) do
     t.datetime "updated_at"
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "book_id"
     t.integer  "tag_id"
@@ -68,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20120425035636) do
 
   create_table "tags", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "terminologies", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "language_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

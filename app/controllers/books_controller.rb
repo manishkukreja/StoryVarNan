@@ -2,12 +2,23 @@
 
   
   def index
+
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]
-    if params[:search].blank?
-      @books = (@tag ? @tag.books : Book).recent
-    else
-      @books = Book.search_published(params[:search],params[:tag_id])
-    end
+    @language = Language.find(params[:language_id]) if params[:language_id]
+    #@language = Book.find_by_language_id(params[:language_id])
+    
+    
+        if params[:search].blank? && params[:language_id].blank?
+          @books = (@tag ? @tag.books : Book).recent
+        elsif params[:search].blank? && params[:tag_id].blank?
+          #@books = (@language ? @language.books : Book).recent
+          @books = @language? Book.find(params[:language_id]) : Book
+          #@books = Book.search_published(params[:search],params[:tag_id])
+        else
+          @books = Book.search_published(params[:search],params[:tag_id])
+        end
+
+    
     respond_to do |format|
       
      format.html { @books = @books.paginate(:page => params[:page], :per_page => books_per_page) }

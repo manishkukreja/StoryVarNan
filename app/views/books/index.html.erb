@@ -10,6 +10,19 @@
       <span class="view"><%= link_to_unless params[:view] == "list", image_tag("views/list.png", :size => "14x10"), params.merge(:view => "list", :page => nil), :title => "List View" %></span>
       <span class="view"><%= link_to_unless params[:view] == "grid", image_tag("views/grid.png", :size => "11x10"), params.merge(:view => "grid", :page => nil), :title => "Grid View" %></span>
     </div>
+    
+    <div class="categories">
+      <h2>Language</h2>
+      <ul>
+      <% for language in Language.order("name") %>
+      
+      <li><%= link_to_unless(params[:language_id].to_i == language.id, language.name,params.merge(:language_id => language.id, :page =>nil))%></li>
+      <% end %>
+      </ul>
+    </div>
+    
+    </br>
+    
 	<div class="categories">
       <h2>Categories</h2>
       <ul>
@@ -21,7 +34,7 @@
     <div class="banner">
 
     </div>
-    <div class="banner">
+    <!-- <div class="banner">
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="badge">
         <div>
         <input type="hidden" name="cmd" value="_xclick" />
@@ -33,16 +46,15 @@
         <input type="hidden" name="tax" value="0" />
         <input type="hidden" name="lc" value="US" />
         <input type="hidden" name="bn" value="PP-DonationsBF" />
-        <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
-        </div>
+        <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" /> 
+        </div> -->
       </form>
     </div>
   </div>   
 
-
-
+ 
 <div class="books">
-    <% if @tag || params[:search].present? %>
+    <% if   @tag || params[:search].present? %>
       <div class="filters">
         <strong>Filtering:</strong>
         <% if params[:search].present? %>
@@ -51,6 +63,13 @@
         <% if @tag %>
           <span class="filter"><%= @tag.display_name %> <%= link_to "x", params.merge(:tag_id => nil, :page => nil) %></span>
         <% end %>
+       <%if params[:lnaguage_id].present?%>
+ 	<span class="filter"><%=Language.find(params[:language_id]).name%><%=link_to "x",params.merge(:language_id => nil,:page=> nil)%></span>
+ <%end%>
+<!--          <%#if @language%> -->
+<!--         <span class="filter"><%#=Language.find(params[:language_id]).name%><%=link_to "x"%></span> params.merge(:language_id => nil, :page => nil)%></span> -->
+<!--          <%#end%> -->
+        
       </div>
     <% end %>
     <% if @books.empty? %>
@@ -85,7 +104,7 @@
           <% for book in @books %>
             <div class="book">
 
-            	<%= image_tag book.image_link.to_s ,:size => "200x125",:alt => book.name%>
+            	<%= link_to image_tag(book.image_link.to_s ,:size => "200x125",:alt => book.name), book%>
 
               <div class="screenshot"><%#= link_to image_tag book.image_url ,:size => "200x125", :alt => book.name, {:autoplay => true}, :class => "play_video" %></div>
               <div class="name">

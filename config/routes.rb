@@ -1,5 +1,9 @@
 Bookshelf::Application.routes.draw do
   
+  resources :terminologies
+
+  resources :languages
+
   resources :taggings
   
   get "taggings/index"
