@@ -135,9 +135,10 @@ label.check_box {
 #top .logo {
   margin-top: 0px;
   margin-left: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+  
 /*  background-color: #BBBBBB;*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#EFEFFB), to(#0101DF));
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF));
 }
 
 #top .subscribe {
@@ -170,7 +171,7 @@ label.check_box {
   padding: 8px 100px;
   background-color: #333;
   border-top: solid 1px #FFF;
-  background: -webkit-gradient(linear, left top, left bottom, from(#070B19), to(#0101DF));
+  background: -webkit-gradient(linear, left top, left bottom, from(#6E6E6E));
   background: -moz-linear-gradient(top,  #267923 #111);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#111');
   border-bottom: solid 3px #D0CFFE;
@@ -195,7 +196,7 @@ label.check_box {
 #main {
   padding-top: 15px;
   max-width: 1500px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#EFF5FB), to(#CEE3F6));
+  background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA));
   
 }
 
@@ -305,16 +306,16 @@ label.check_box {
 }
 
 .full .watch_button {
-  font-size: 13px;
+  font-size: 10px;
   padding: 5px 10px 6px 10px;
   font-weight: bold;
   border: 1px solid #466A98;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  color: #FFF;
-  background: #386FB2;
-  background: -webkit-gradient(linear, left top, left bottom, from(#67B0EF), to(#2B5EA4));
+  color: #E6E6E6;
+  background: #AAAAAA;
+  background: -webkit-gradient(linear, left top, left bottom, from(#A4A4A4), to(#6E6E6E));
   background: -moz-linear-gradient(top,  #579CEA,  #2B5EA4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#579CEA', endColorstr='#2B5EA4');
   text-decoration: none;
