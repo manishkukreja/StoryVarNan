@@ -25,6 +25,8 @@ gem "mail", "2.2.19"
 
 gem 'pg'
 
+gem 'hirb'
+
 gem "fog", "~> 1.3.1"
 
 #gem 'rmagick'

@@ -5,7 +5,7 @@
 
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]
     @language = Language.find(params[:language_id]) if params[:language_id]
-    @select_language = Book.find_all_by(params[:language_id])
+    @select_language = Book.find_all_by_language_id(params[:language_id])
     #@language = Book.find_by_language_id(params[:language_id])
     
     

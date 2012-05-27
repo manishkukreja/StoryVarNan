@@ -44,7 +44,8 @@
 	
       <%if params[:lnaguage_id].present?%> 			
  			<span class="filter"><%=Language.find(params[:language_id]).name%><%=link_to "x",params.merge(:language_id => nil,:page=> nil)%></span>
- 	 			
+ 	 			<%for select_language in @select_language%>
+ 	 			 <%%>
  	  <%end%>
 	
     <% if   @tag || params[:search].present? %>
