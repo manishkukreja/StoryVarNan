@@ -60,6 +60,8 @@ class Book < ActiveRecord::Base
     end.join(" #{join} ")
   end
   
+  
+  
 ########END OF INDEX METHODS  
   
    

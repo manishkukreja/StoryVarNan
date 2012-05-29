@@ -20,7 +20,14 @@
       <% end %>
       </ul>
     </div>
-    
+    <%if params[:language_id]%>
+    <p>The language id is <%=params[:language_id]%></p>  
+    	<%for book in @selected_books%>
+    	<%= book.language_id%>
+    	<%=book.name%> 
+    	</br> 
+    	<%end%>
+    <%end%>
     </br>
     
 	<div class="categories">
@@ -42,13 +49,13 @@
  
 <div class="books">
 	
-      <%if params[:lnaguage_id].present?%> 			
- 			<span class="filter"><%=Language.find(params[:language_id]).name%><%=link_to "x",params.merge(:language_id => nil,:page=> nil)%></span>
- 	 			<%for select_language in @select_language%>
+     <!--  <%#if params[:lnaguage_id].present?%> 			
+ 			<span class="filter"><%#=Language.find(params[:language_id]).name%><%=link_to "x",params.merge(:language_id => nil,:page=> nil)%></span>
+ 	 			<%#for select_language in @select_language%>
  	 			 <%%>
- 	  <%end%>
+ 	  <%#end%> -->
 	
-    <% if   @tag || params[:search].present? %>
+    <% if  @language || @tag || params[:search].present? %>
       <div class="filters">
         <strong>Filtering:</strong>
         <% if params[:search].present? %>
@@ -57,10 +64,9 @@
         <% if @tag %>
           <span class="filter"><%= @tag.display_name %> <%= link_to "x", params.merge(:tag_id => nil, :page => nil) %></span>
         <% end %>
-<!--          <%#if @language%> -->
-<!--         <span class="filter"><%#=Language.find(params[:language_id]).name%><%=link_to "x"%></span> params.merge(:language_id => nil, :page => nil)%></span> -->
-<!--          <%#end%> -->
-        
+         <%if @language%> 
+        <span class="filter"><%=Language.find(params[:language_id]).name%><%=link_to "x", params.merge(:language_id => nil, :page => nil)%></span> 
+         <%end%>     
       </div>
     <% end %>
     <% if @books.empty? %>
