@@ -36,10 +36,10 @@ class Book < ActiveRecord::Base
     position.to_s.rjust(3, "0")
   end
   
-  def self.search_published(query, tag_id = nil)
+  def self.search_published(query, tag_id = nil, language_id = nil)
     if APP_CONFIG['thinking_sphinx']
       with = tag_id ? {:tag_ids => tag_id.to_i} : {}
-      
+      with = language_id ? {:language_ids => language_id.to_s} : {}
       search(query, :conditions => { :published_at => 0..Time.now.utc.to_i }, :with => with,
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else

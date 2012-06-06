@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,7 +21,7 @@ gem 'carrierwave'
 
 gem 'ancestry'
 
-gem "mail", "2.2.19"
+gem "mail", "2.3.0"
 
 gem 'pg'
 

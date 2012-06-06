@@ -35,13 +35,13 @@ if params[:search].blank?
   
 elsif params[:language_id].blank?
   if params[:tag_id].blank?
-    @books = Book.search_published(params[:search])
+    @books = Book.search_published(params[:search],{},{})
   else params[:language_id].blank? 
-    @books = Book.search_published(params[:search],params[:tag_id])
+    @books = Book.search_published(params[:search],params[:tag_id],{})
   end
   
 elsif params[:tag_id].blank?
-  @books = Book.search_published(params[:search],params[:language_id])
+  @books = Book.search_published(params[:search],{},params[:language_id])
   
 elsif
   @books = Book.search_published(params[:search],params[:tag_id],params[:language_id])
@@ -50,7 +50,6 @@ end
 
     
     respond_to do |format|
-      
      format.html { @books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
      format.rss
       
@@ -118,7 +117,7 @@ end
     end
   end
 
-private
+
 
   def books_per_page
     case params[:view]

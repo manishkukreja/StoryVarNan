@@ -22,7 +22,7 @@
     </div>
     <%if params[:language_id]%>
     <p>The language id is <%=params[:language_id]%></p>  
-    	<%for book in @selected_books%>
+    	<%for book in @books%>
     	<%= book.language_id%>
     	<%=book.name%> 
     	</br> 
