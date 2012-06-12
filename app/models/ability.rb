@@ -16,12 +16,14 @@ class Ability
     if user.role == 'admin'
       #can :create, :books
       #can :update, :books
-      
+      can :index, :all
       can :create, :all
       can :destroy, :all
       can :update, :all
     elsif user.role =='user'
       can :create, :comments
+      cannot :access, :taggings
+      cannot :access, :tags
       can [:update ,:destroy], :comments do |comment|
         comment.user.id == user.id
       end 

@@ -1,4 +1,5 @@
 <h1>Taggings</h1>
+<%if can? :index, @taggings%>
 
 <table>
   <tr>
@@ -28,4 +29,7 @@
   </tr>
 <% end %>
 </table>
+<%else%>
+<p>"You are not authorized to access this page"</p>
+<%end%>
 

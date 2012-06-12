@@ -1,2 +1,21 @@
 <h1>Taggings#new</h1>
-<p>Find me in app/views/taggings/new.html.erb</p>
+
+
+
+<%= form_for(@tagging) do |f| %>
+
+  <div class="field">
+    <%= f.label :book_id %><br />
+    <%= f.text_field :book_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_id %><br />
+    <%= f.text_field :tag_id %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
