@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517130355) do
+ActiveRecord::Schema.define(:version => 20121009140441) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120517130355) do
     t.boolean  "asciibooks"
     t.string   "image_link"
     t.integer  "language_id"
+    t.string   "narrator"
   end
 
   create_table "comments", :force => true do |t|

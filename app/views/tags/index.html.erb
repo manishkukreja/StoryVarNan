@@ -1,3 +1,4 @@
+<%if can? :index, @tags%>
 <h1>Listing tags</h1>
 
 <table>
@@ -24,3 +25,6 @@
 <br />
 
 <%= link_to 'New Tag', new_tag_path %>
+<%else%>
+<p> "You are not authorized to view this page. Please check with your administrator"</p>
+<%end%>

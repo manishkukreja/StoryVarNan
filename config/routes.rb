@@ -48,7 +48,12 @@ Bookshelf::Application.routes.draw do
   
   
 
-  resources :books
+  resources :books do
+    member do
+      get 'bittu'
+    end
+  end
+  
   
   resources :user_sessions
   

@@ -1,5 +1,5 @@
 <% title "Books in StotyVarNan", false %>
-<!-- <h1>List of Books in BookShelf</h1> -->
+
 
 
 <div class="content">
@@ -12,22 +12,18 @@
     </div>
     
     <div class="categories">
-      <h2>Language</h2>
+    	
+    
+    <h2>Language</h2>
       <ul>
       <% for language in Language.order("name") %>
       
       <li><%= link_to_unless(params[:language_id].to_i == language.id, language.name,params.merge(:language_id => language.id, :page =>nil))%></li>
+      
       <% end %>
       </ul>
     </div>
-    <%if params[:language_id]%>
-    <p>The language id is <%=params[:language_id]%></p>  
-    	<%for book in @books%>
-    	<%= book.language_id%>
-    	<%=book.name%> 
-    	</br> 
-    	<%end%>
-    <%end%>
+    
     </br>
     
 	<div class="categories">
@@ -38,10 +34,18 @@
       <% end %>
       </ul>
     </div>
+    </br>
+    <div class="categories">
+    	<h2>Narrator</h2>
+    	<%#=  @narrator_list%>
+    	<%= select_tag "Narrator",options_for_select(@narrator_list,"narrator")%>
+    	
+    </div>	
+    </br>
     <div class="banner">
-
-    </div>
+	</div>
     
+     
       </form>
     </div>
   </div>   
@@ -49,12 +53,8 @@
  
 <div class="books">
 	
-     <!--  <%#if params[:lnaguage_id].present?%> 			
- 			<span class="filter"><%#=Language.find(params[:language_id]).name%><%=link_to "x",params.merge(:language_id => nil,:page=> nil)%></span>
- 	 			<%#for select_language in @select_language%>
- 	 			 <%%>
- 	  <%#end%> -->
-	
+     
+	 
     <% if  @language || @tag || params[:search].present? %>
       <div class="filters">
         <strong>Filtering:</strong>
@@ -69,6 +69,8 @@
          <%end%>     
       </div>
     <% end %>
+    
+   
     <% if @books.empty? %>
       <p class="content">No books found. <%= link_to "See all books.", books_path %></p>
     <% else %>
@@ -79,19 +81,19 @@
       <% elsif params[:view] == "list" %>
         <table class="list">
           <tr>
-<!--             <th>#</th> -->
             <th>Name</th>
             <th>Comments</th>
             <th>Released</th>
           </tr>
           <% for book in @books %>
             <tr>
-<!--               <td><%= book.position %></td> -->
-              <td><%= link_to book.name, book %></td>
-              <td><%= link_to pluralize(book.comments.size, "comment"), book_path(book, :view => "comments"), :class => "comment_count" %></td>
-              <td><%= book.published_at.strftime('%b %d, %Y') %></td>
+	              <td><%= link_to book.name, book %></td>
+	              <td><%= link_to pluralize(book.comments.size, "comment"), book_path(book, :view => "comments"), :class => "comment_count" %></td>
+	              <td><%= book.published_at.strftime('%b %d, %Y') %></td>
               <%if can? :update,:books%>
-              <td><%= link_to 'Edit', edit_book_path(book)  %></td>
+	              <td><%= link_to 'Edit', edit_book_path(book)  %></td>
+	              <td><%= link_to 'taggings', edit_tagging_path(book)  %></td>
+	            
               <%end%>
             </tr>
           <% end %>
@@ -117,8 +119,8 @@
 </div>
       <% end %>
 
-      <%= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %>
-    <% end %>
+<!--       <%#= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %> -->
+    <%end %>
   </div>
 
 	

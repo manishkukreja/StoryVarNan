@@ -2,55 +2,17 @@
 
   
   def index
-
-    @tag = Tag.find(params[:tag_id]) if params[:tag_id]
+    
+    @tag = Tag.find(params[:tag_id]) if params[:tag_id]    
     @language = Language.find(params[:language_id]) if params[:language_id]
-    @selected_books = Book.find_all_by_language_id(params[:language_id])
-    
-    
-    # if params[:search].blank?
-      # @books = (@tag ? @tag.books : Book).recent
-    # elsif params[:language_id].blank?
-      # @books =  Book.find_all_by_language_id(params[:language_id])
-#       
-     # elsif params[:tag_id].blank?
-      # @books = Book.search_published(params[:search],params[:tag_id],params[:language_id])
-    # end
-#     
-     ######################################################################
-        # if params[:search].blank? && params[:language_id].blank?
-          # @books = (@tag ? @tag.books : Book).recent
-        # elsif params[:search].blank? && params[:tag_id].blank?
-          # #@books = (@language ? @language.books : Book).recent
-          # @books = Book.find_all_by_language_id(params[:language_id])
-          # #@books = Book.search_published(params[:search],params[:tag_id])
-        # elsif
-          # @books = Book.search_published(params[:search],params[:tag_id])
-        # end
+    @narrator_list = Book.find_narrator(params)
         
-if params[:search].blank?  
-  if params[:language_id].blank?
-      @books = (@tag ? @tag.books : Book)
-  end
-  
-elsif params[:language_id].blank?
-  if params[:tag_id].blank?
-    @books = Book.search_published(params[:search],{},{})
-  else params[:language_id].blank? 
-    @books = Book.search_published(params[:search],params[:tag_id],{})
-  end
-  
-elsif params[:tag_id].blank?
-  @books = Book.search_published(params[:search],{},params[:language_id])
-  
-elsif
-  @books = Book.search_published(params[:search],params[:tag_id],params[:language_id])
-
-end
-
-    
-    respond_to do |format|
-     format.html { @books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
+    if params[:search]
+        @books=Book.search_published(params[:search])
+    else
+        @books=Book.find_book(params) 
+    end     respond_to do |format|
+     format.html {@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
      format.rss
       
     end
@@ -125,6 +87,10 @@ end
     when "grid" then 4
     else 4
     end
+  end
+  
+  def bittu
+  
   end
 
 end

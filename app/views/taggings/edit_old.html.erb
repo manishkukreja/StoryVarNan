@@ -1,0 +1,28 @@
+<h1>Tagging list for books</h1>
+<p>Book ID:<%= Book.find(Tagging.find_by_book_id(params[:id]).book_id).name%></p>
+
+<p>Tag ID:</p>
+	<% @tags.each do|t|%>
+		<%# for tagging in @taggings%>
+			<%#if Tag.find(tagging.tag_id)%>
+			<%= check_box_tag t.name,t.name, {:checked=>true}%><%#= t.name%></br>
+			<%#else%>
+			<%#= check_box_tag Tag.find(tagging.tag_id).name,Tag.find(tagging.tag_id).name, {:checked=>false}%><%= t.name%></br>
+		
+  			
+  
+  <!-- <%#@selected_taggings=Tag.find(tagging.tag_id).id%>
+  <%#if @selected_taggings%>
+ <%#= check_box_tag Tag.find(tagging.tag_id).name,Tag.find(tagging.tag_id).name, {:checked=>true}%><%#=Tag.find(tagging.tag_id).name%></br>
+ <%#else%>
+ <%#= check_box_tag Tag.find(tagging.tag_id).name,Tag.find(tagging.tag_id).name, {:checked=>true}%><%#=Tag.find(tagging.tag_id).name%></br> -->
+ 
+<%#end%>
+<%#end%>
+<%end%>
+</br>
+<%= button_to "Update" %>
+<%=link_to "Add new Tag", new_tagging_path%>
+
+<%#= check_box "new[p_#{i}]","graph_id",{:checked=>true},g.id%>
+

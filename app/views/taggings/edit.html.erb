@@ -1,7 +1,19 @@
-<h1>Taggings#edit</h1>
+<h1>Tagging list for books</h1>
+<p>Book ID:<%= Book.find(Tagging.find_by_book_id(params[:id]).book_id).name%></p>
 
+<p>Tag ID:</p>
+	<% @tags.each_with_index do|t,i|%>
+		<%@selected_tags = Tagging.find_by_book_id_and_tag_id(params[:id],t.id)%>
+			
+	  <%if @selected_tags %>
+			<%=check_box "new[p#{t.id}]","tag_id",{:checked=>true},t.id%><%=t.name%></br>
+	  <%else%>
+	  		<%=check_box "new[p#{t.id}]","tag_id",{:checked=>false},t.id%><%=t.name%></br>	
+	  <%end%>
+	<%end%>
+</br>
+<%= button_to "Update",tagging_path, :method=>:put %>
+<%=link_to "Add new Tag", new_tagging_path%>
 
-<% select "Tag Name" %>
+<%#= check_box "new[p_#{i}]","graph_id",{:checked=>true},g.id%>
 
-
-<p>Find me in app/views/taggings/edit.html.erb</p>

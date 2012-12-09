@@ -1,9 +1,6 @@
 <div class="book">
 	<%= link_to image_tag(book.image_link.to_s,:size => "200x125",:alt => book.name), book%>
-	
-
- 
-  <div class="main">
+<div class="main">
     <div class="info">
       <span class="number">Book <%= book.position %></span> &ndash;
       <span class="published_at"><%= book.published_at.strftime('%b %d, %Y') %></span>
@@ -14,12 +11,16 @@
     <h2><%= link_to book.name, book %></h2>
     <div class="description"><%= book.description %></div>
     <div class="watch">
-    	<%= link_to "Watch Video", book_path(book, :autoplay => true), :class => "watch_button" %></br>
-      <%#= link_to "Read Book", book_path(book, :autoplay => false), :class => "read_button" %> </br>
-<!--       <span class="stats">(<%#= pluralize (book.seconds/60).round, "minute" %>, <%#= link_to pluralize(book.comments.size, "comment"), book_path(episode, :view => "comments") %>)</span> -->
-      <%if can? :update, :books%>
-      <%= link_to 'Edit Book', edit_book_path(book),:class => "read_button" %>
-      <%end%>
+     <%= link_to "Watch Video", book_path(book, :autoplay => true), :class => "watch_button" %>
+    
+     <p> About <%=link_to book.narrator,'',
+              :onclick => "window.open('/bittu.html.erb','Author','resizable=0, scrollbars=0,height=550,width=550').focus()",:remote => true,:controller=> "books" %></p>
+           
+     
+       <%if can? :update, :books%>
+       </br>
+        <div> <%= link_to "Edit Book", edit_book_path(book),:class => "read_button" %></div>	
+       <%end%>
     </div>
   </div>
   <div class="clear"></div>	

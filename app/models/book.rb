@@ -1,17 +1,48 @@
 class Book < ActiveRecord::Base
   attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link
-  has_many :taggings
-  has_many :tags, :through => :taggings
+  has_many :taggings,:dependent => :destroy
+  has_many :tags, :through => :taggings ,:dependent => :destroy
   mount_uploader :image, ImageUploader
   mount_uploader :audio, AudioUploader
-  has_many :comments
-  has_many :languages
+  has_many :comments, :dependent => :destroy
+  has_many :languages, :dependent => :destroy
   
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
   scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
   
+  
+  
+##Method to search based on Narrator
+def self.find_narrator(params)
+  Book.find_by_sql('select distinct narrator from books').map{|i| i.narrator}
+end
+##
+  
+  
+###Method to search based on Tag and language
+def self.find_book(params)
+  where_sql=[]
+  if params[:language_id]   
+    where_sql= ["language_id = ?"] 
+    where_sql << params[:language_id]
+    
+  end  
+  if params[:tag_id]
+    if params[:language_id]
+    where_sql[0] += "OR id IN (?)"
+    else
+      where_sql=["id IN (?)"]
+    end 
+    @tag_list=Tagging.where(:tag_id=>params[:tag_id]).select(:book_id)
+    @book_list=Book.where(:id=>@tag_list)
+    where_sql<<@book_list
+  end
+  
+  Book.where(where_sql)
+end
+###  
   
   
   
@@ -21,7 +52,7 @@ class Book < ActiveRecord::Base
     else
       find(:all)
     end
-  end
+  end
 
 ########INDEX METHODS
  def published?
@@ -36,10 +67,18 @@ class Book < ActiveRecord::Base
     position.to_s.rjust(3, "0")
   end
   
+  
+  def self.search_selected_books(params)
+    
+    @search_result = Book.find_by_sql("select * from Books where tag ")
+    @search_result = Book.find(:all,:conditions=> {})
+    
+  end
+  
   def self.search_published(query, tag_id = nil, language_id = nil)
     if APP_CONFIG['thinking_sphinx']
       with = tag_id ? {:tag_ids => tag_id.to_i} : {}
-      with = language_id ? {:language_ids => language_id.to_s} : {}
+      with = language_id ? {:language_ids => language_id.to_i} : {}
       search(query, :conditions => { :published_at => 0..Time.now.utc.to_i }, :with => with,
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else
