@@ -24,22 +24,29 @@ end
 ###Method to search based on Tag and language
 def self.find_book(params)
   where_sql=[]
-  if params[:language_id]   
-    where_sql= ["language_id = ?"] 
+  if params[:language_id]
+    where_sql= ["language_id = ?"]
     where_sql << params[:language_id]
-    
-  end  
+  end
   if params[:tag_id]
     if params[:language_id]
     where_sql[0] += "OR id IN (?)"
     else
       where_sql=["id IN (?)"]
-    end 
+    end
     @tag_list=Tagging.where(:tag_id=>params[:tag_id]).select(:book_id)
     @book_list=Book.where(:id=>@tag_list)
     where_sql<<@book_list
   end
   
+  if params[:narrator]
+    if params[:language_id] || params[:tag_id]
+      where_sql[0] += " OR narrator = ?"
+    else
+      where_sql[0]= "narrator = ? "
+    end
+    where_sql << params[:narrator]
+  end
   Book.where(where_sql)
 end
 ###  
@@ -52,7 +59,9 @@ end
     else
       find(:all)
     end
-  end
+  end
+
+
 
 ########INDEX METHODS
  def published?

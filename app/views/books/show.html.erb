@@ -1,3 +1,11 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $( "#accordion" ).accordion({ autoHeight: false,collapsible:true,active: false});
+})
+</script>
+
+
 <% title @book.full_name, false %>
 
 
@@ -60,7 +68,14 @@
         <span class="unreleased">NOT YET RELEASED</span>
       <% end %>
     </div>
-    
+    <div id="accordion">
+	    				
+	     		 <h3 >About <strong><%=@book.narrator%></strong></h3>
+	     	 		<div> 	     	 			
+	     	 			<p><%= render "info/#{@book.narrator}"%></p>
+	     	 		</div>
+	     	 			    		 	
+		</div>
     <div class="description"><%= @book.description %></div>
     <div class="watch">
     	

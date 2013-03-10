@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009140441) do
+ActiveRecord::Schema.define(:version => 20121216061217) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(:version => 20121009140441) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_agent"
     t.string   "ancestry"
     t.string   "site_url"
-    t.string   "user_agent"
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(:version => 20121009140441) do
     t.string   "name"
     t.string   "email"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "infos", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

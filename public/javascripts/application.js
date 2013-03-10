@@ -63,4 +63,34 @@ $(function() {
       }
     });
   }
+
+
+
+  $('#narrator_name').on(change,function(){
+    alert("you have changed me");
+  })
+});
+
+
+// $(function(){
+  //  $('#narrator').hide();
+  // $('#more_filters').click(function(){
+  //   var a ='Less Filters'
+  //     // var a = document.getElementById('more_filters')
+  //     alert(a)
+  //     $('#narrator').toggle()
+  //     $('#mote_filters').text(a);
+  // })
+
+$(function(){
+  
+  $("#selected_book").click(function(){
+    var book_name = $(this).val('href');
+    alert(book_name);
+  })
+});
+
+
+
+
 });

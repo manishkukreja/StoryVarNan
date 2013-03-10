@@ -1,0 +1,176 @@
+        terminologies GET    /terminologies(.:format)              {:action=>"index", :controller=>"terminologies"}
+                      POST   /terminologies(.:format)              {:action=>"create", :controller=>"terminologies"}
+      new_terminology GET    /terminologies/new(.:format)          {:action=>"new", :controller=>"terminologies"}
+     edit_terminology GET    /terminologies/:id/edit(.:format)     {:action=>"edit", :controller=>"terminologies"}
+          terminology GET    /terminologies/:id(.:format)          {:action=>"show", :controller=>"terminologies"}
+                      PUT    /terminologies/:id(.:format)          {:action=>"update", :controller=>"terminologies"}
+                      DELETE /terminologies/:id(.:format)          {:action=>"destroy", :controller=>"terminologies"}
+            languages GET    /languages(.:format)                  {:action=>"index", :controller=>"languages"}
+                      POST   /languages(.:format)                  {:action=>"create", :controller=>"languages"}
+         new_language GET    /languages/new(.:format)              {:action=>"new", :controller=>"languages"}
+        edit_language GET    /languages/:id/edit(.:format)         {:action=>"edit", :controller=>"languages"}
+             language GET    /languages/:id(.:format)              {:action=>"show", :controller=>"languages"}
+                      PUT    /languages/:id(.:format)              {:action=>"update", :controller=>"languages"}
+                      DELETE /languages/:id(.:format)              {:action=>"destroy", :controller=>"languages"}
+             taggings GET    /taggings(.:format)                   {:action=>"index", :controller=>"taggings"}
+                      POST   /taggings(.:format)                   {:action=>"create", :controller=>"taggings"}
+          new_tagging GET    /taggings/new(.:format)               {:action=>"new", :controller=>"taggings"}
+         edit_tagging GET    /taggings/:id/edit(.:format)          {:action=>"edit", :controller=>"taggings"}
+              tagging GET    /taggings/:id(.:format)               {:action=>"show", :controller=>"taggings"}
+                      PUT    /taggings/:id(.:format)               {:action=>"update", :controller=>"taggings"}
+                      DELETE /taggings/:id(.:format)               {:action=>"destroy", :controller=>"taggings"}
+       taggings_index GET    /taggings/index(.:format)             {:controller=>"taggings", :action=>"index"}
+        taggings_edit GET    /taggings/edit(.:format)              {:controller=>"taggings", :action=>"edit"}
+        taggings_show GET    /taggings/show(.:format)              {:controller=>"taggings", :action=>"show"}
+         taggings_new GET    /taggings/new(.:format)               {:controller=>"taggings", :action=>"new"}
+     taggings_destroy GET    /taggings/destroy(.:format)           {:controller=>"taggings", :action=>"destroy"}
+    feedback_messages GET    /feedback_messages(.:format)          {:action=>"index", :controller=>"feedback_messages"}
+                      POST   /feedback_messages(.:format)          {:action=>"create", :controller=>"feedback_messages"}
+ new_feedback_message GET    /feedback_messages/new(.:format)      {:action=>"new", :controller=>"feedback_messages"}
+edit_feedback_message GET    /feedback_messages/:id/edit(.:format) {:action=>"edit", :controller=>"feedback_messages"}
+     feedback_message GET    /feedback_messages/:id(.:format)      {:action=>"show", :controller=>"feedback_messages"}
+                      PUT    /feedback_messages/:id(.:format)      {:action=>"update", :controller=>"feedback_messages"}
+                      DELETE /feedback_messages/:id(.:format)      {:action=>"destroy", :controller=>"feedback_messages"}
+             comments GET    /comments(.:format)                   {:action=>"index", :controller=>"comments"}
+                      POST   /comments(.:format)                   {:action=>"create", :controller=>"comments"}
+          new_comment GET    /comments/new(.:format)               {:action=>"new", :controller=>"comments"}
+         edit_comment GET    /comments/:id/edit(.:format)          {:action=>"edit", :controller=>"comments"}
+              comment GET    /comments/:id(.:format)               {:action=>"show", :controller=>"comments"}
+                      PUT    /comments/:id(.:format)               {:action=>"update", :controller=>"comments"}
+                      DELETE /comments/:id(.:format)               {:action=>"destroy", :controller=>"comments"}
+        user_sessions GET    /user_sessions(.:format)              {:action=>"index", :controller=>"user_sessions"}
+                      POST   /user_sessions(.:format)              {:action=>"create", :controller=>"user_sessions"}
+     new_user_session GET    /user_sessions/new(.:format)          {:action=>"new", :controller=>"user_sessions"}
+    edit_user_session GET    /user_sessions/:id/edit(.:format)     {:action=>"edit", :controller=>"user_sessions"}
+         user_session GET    /user_sessions/:id(.:format)          {:action=>"show", :controller=>"user_sessions"}
+                      PUT    /user_sessions/:id(.:format)          {:action=>"update", :controller=>"user_sessions"}
+                      DELETE /user_sessions/:id(.:format)          {:action=>"destroy", :controller=>"user_sessions"}
+                users GET    /users(.:format)                      {:action=>"index", :controller=>"users"}
+                      POST   /users(.:format)                      {:action=>"create", :controller=>"users"}
+             new_user GET    /users/new(.:format)                  {:action=>"new", :controller=>"users"}
+            edit_user GET    /users/:id/edit(.:format)             {:action=>"edit", :controller=>"users"}
+                 user GET    /users/:id(.:format)                  {:action=>"show", :controller=>"users"}
+                      PUT    /users/:id(.:format)                  {:action=>"update", :controller=>"users"}
+                      DELETE /users/:id(.:format)                  {:action=>"destroy", :controller=>"users"}
+                 root        /                                     {:controller=>"books", :action=>"index"}
+                             /auth/:provider/callback(.:format)    {:controller=>"users", :action=>"create"}
+                about        /about(.:format)                      {:action=>"about", :controller=>"info"}
+            give_back        /give_back(.:format)                  {:action=>"give_back", :controller=>"info"}
+           moderators        /moderators(.:format)                 {:action=>"moderators", :controller=>"info"}
+             feedback        /feedback(.:format)                   {:action=>"new", :controller=>"feedback_messages"}
+                 tags GET    /tags(.:format)                       {:action=>"index", :controller=>"tags"}
+                      POST   /tags(.:format)                       {:action=>"create", :controller=>"tags"}
+              new_tag GET    /tags/new(.:format)                   {:action=>"new", :controller=>"tags"}
+             edit_tag GET    /tags/:id/edit(.:format)              {:action=>"edit", :controller=>"tags"}
+                  tag GET    /tags/:id(.:format)                   {:action=>"show", :controller=>"tags"}
+                      PUT    /tags/:id(.:format)                   {:action=>"update", :controller=>"tags"}
+                      DELETE /tags/:id(.:format)                   {:action=>"destroy", :controller=>"tags"}
+          bittu_books GET    /books/	(.:format)                {:action=>"bittu", :controller=>"books"}
+                books GET    /books(.:format)                      {:action=>"index", :controller=>"books"}
+                      POST   /books(.:format)                      {:action=>"create", :controller=>"books"}
+             new_book GET    /books/new(.:format)                  {:action=>"new", :controller=>"books"}
+            edit_book GET    /books/:id/edit(.:format)             {:action=>"edit", :controller=>"books"}
+                 book GET    /books/:id(.:format)                  {:action=>"show", :controller=>"books"}
+                      PUT    /books/:id(.:format)                  {:action=>"update", :controller=>"books"}
+                      DELETE /books/:id(.:format)                  {:action=>"destroy", :controller=>"books"}
+                      GET    /user_sessions(.:format)              {:action=>"index", :controller=>"user_sessions"}
+                      POST   /user_sessions(.:format)              {:action=>"create", :controller=>"user_sessions"}
+                      GET    /user_sessions/new(.:format)          {:action=>"new", :controller=>"user_sessions"}
+                      GET    /user_sessions/:id/edit(.:format)     {:action=>"edit", :controller=>"user_sessions"}
+                      GET    /user_sessions/:id(.:format)          {:action=>"show", :controller=>"user_sessions"}
+                      PUT    /user_sessions/:id(.:format)          {:action=>"update", :controller=>"user_sessions"}
+                      DELETE /user_sessions/:id(.:format)          {:action=>"destroy", :controller=>"user_sessions"}
+                login GET    /login(.:format)                      {:action=>"new", :controller=>"user_sessions"}
+               logout GET    /logout(.:format)                     {:action=>"destroy", :controller=>"user_sessions"}
+            terminologies GET    /terminologies(.:format)              {:action=>"index", :controller=>"terminologies"}
+                      POST   /terminologies(.:format)              {:action=>"create", :controller=>"terminologies"}
+      new_terminology GET    /terminologies/new(.:format)          {:action=>"new", :controller=>"terminologies"}
+     edit_terminology GET    /terminologies/:id/edit(.:format)     {:action=>"edit", :controller=>"terminologies"}
+          terminology GET    /terminologies/:id(.:format)          {:action=>"show", :controller=>"terminologies"}
+                      PUT    /terminologies/:id(.:format)          {:action=>"update", :controller=>"terminologies"}
+                      DELETE /terminologies/:id(.:format)          {:action=>"destroy", :controller=>"terminologies"}
+            languages GET    /languages(.:format)                  {:action=>"index", :controller=>"languages"}
+                      POST   /languages(.:format)                  {:action=>"create", :controller=>"languages"}
+         new_language GET    /languages/new(.:format)              {:action=>"new", :controller=>"languages"}
+        edit_language GET    /languages/:id/edit(.:format)         {:action=>"edit", :controller=>"languages"}
+             language GET    /languages/:id(.:format)              {:action=>"show", :controller=>"languages"}
+                      PUT    /languages/:id(.:format)              {:action=>"update", :controller=>"languages"}
+                      DELETE /languages/:id(.:format)              {:action=>"destroy", :controller=>"languages"}
+           info_index GET    /info(.:format)                       {:action=>"index", :controller=>"info"}
+                      POST   /info(.:format)                       {:action=>"create", :controller=>"info"}
+             new_info GET    /info/new(.:format)                   {:action=>"new", :controller=>"info"}
+            edit_info GET    /info/:id/edit(.:format)              {:action=>"edit", :controller=>"info"}
+                 info GET    /info/:id(.:format)                   {:action=>"show", :controller=>"info"}
+                      PUT    /info/:id(.:format)                   {:action=>"update", :controller=>"info"}
+                      DELETE /info/:id(.:format)                   {:action=>"destroy", :controller=>"info"}
+             taggings GET    /taggings(.:format)                   {:action=>"index", :controller=>"taggings"}
+                      POST   /taggings(.:format)                   {:action=>"create", :controller=>"taggings"}
+          new_tagging GET    /taggings/new(.:format)               {:action=>"new", :controller=>"taggings"}
+         edit_tagging GET    /taggings/:id/edit(.:format)          {:action=>"edit", :controller=>"taggings"}
+              tagging GET    /taggings/:id(.:format)               {:action=>"show", :controller=>"taggings"}
+                      PUT    /taggings/:id(.:format)               {:action=>"update", :controller=>"taggings"}
+                      DELETE /taggings/:id(.:format)               {:action=>"destroy", :controller=>"taggings"}
+       taggings_index GET    /taggings/index(.:format)             {:controller=>"taggings", :action=>"index"}
+        taggings_edit GET    /taggings/edit(.:format)              {:controller=>"taggings", :action=>"edit"}
+        taggings_show GET    /taggings/show(.:format)              {:controller=>"taggings", :action=>"show"}
+         taggings_new GET    /taggings/new(.:format)               {:controller=>"taggings", :action=>"new"}
+     taggings_destroy GET    /taggings/destroy(.:format)           {:controller=>"taggings", :action=>"destroy"}
+    feedback_messages GET    /feedback_messages(.:format)          {:action=>"index", :controller=>"feedback_messages"}
+                      POST   /feedback_messages(.:format)          {:action=>"create", :controller=>"feedback_messages"}
+ new_feedback_message GET    /feedback_messages/new(.:format)      {:action=>"new", :controller=>"feedback_messages"}
+edit_feedback_message GET    /feedback_messages/:id/edit(.:format) {:action=>"edit", :controller=>"feedback_messages"}
+     feedback_message GET    /feedback_messages/:id(.:format)      {:action=>"show", :controller=>"feedback_messages"}
+                      PUT    /feedback_messages/:id(.:format)      {:action=>"update", :controller=>"feedback_messages"}
+                      DELETE /feedback_messages/:id(.:format)      {:action=>"destroy", :controller=>"feedback_messages"}
+             comments GET    /comments(.:format)                   {:action=>"index", :controller=>"comments"}
+                      POST   /comments(.:format)                   {:action=>"create", :controller=>"comments"}
+          new_comment GET    /comments/new(.:format)               {:action=>"new", :controller=>"comments"}
+         edit_comment GET    /comments/:id/edit(.:format)          {:action=>"edit", :controller=>"comments"}
+              comment GET    /comments/:id(.:format)               {:action=>"show", :controller=>"comments"}
+                      PUT    /comments/:id(.:format)               {:action=>"update", :controller=>"comments"}
+                      DELETE /comments/:id(.:format)               {:action=>"destroy", :controller=>"comments"}
+        user_sessions GET    /user_sessions(.:format)              {:action=>"index", :controller=>"user_sessions"}
+                      POST   /user_sessions(.:format)              {:action=>"create", :controller=>"user_sessions"}
+     new_user_session GET    /user_sessions/new(.:format)          {:action=>"new", :controller=>"user_sessions"}
+    edit_user_session GET    /user_sessions/:id/edit(.:format)     {:action=>"edit", :controller=>"user_sessions"}
+         user_session GET    /user_sessions/:id(.:format)          {:action=>"show", :controller=>"user_sessions"}
+                      PUT    /user_sessions/:id(.:format)          {:action=>"update", :controller=>"user_sessions"}
+                      DELETE /user_sessions/:id(.:format)          {:action=>"destroy", :controller=>"user_sessions"}
+                users GET    /users(.:format)                      {:action=>"index", :controller=>"users"}
+                      POST   /users(.:format)                      {:action=>"create", :controller=>"users"}
+             new_user GET    /users/new(.:format)                  {:action=>"new", :controller=>"users"}
+            edit_user GET    /users/:id/edit(.:format)             {:action=>"edit", :controller=>"users"}
+                 user GET    /users/:id(.:format)                  {:action=>"show", :controller=>"users"}
+                      PUT    /users/:id(.:format)                  {:action=>"update", :controller=>"users"}
+                      DELETE /users/:id(.:format)                  {:action=>"destroy", :controller=>"users"}
+                 root        /                                     {:controller=>"books", :action=>"index"}
+                             /auth/:provider/callback(.:format)    {:controller=>"users", :action=>"create"}
+                about        /about(.:format)                      {:action=>"about", :controller=>"info"}
+            give_back        /give_back(.:format)                  {:action=>"give_back", :controller=>"info"}
+           moderators        /moderators(.:format)                 {:action=>"moderators", :controller=>"info"}
+             feedback        /feedback(.:format)                   {:action=>"new", :controller=>"feedback_messages"}
+                 tags GET    /tags(.:format)                       {:action=>"index", :controller=>"tags"}
+                      POST   /tags(.:format)                       {:action=>"create", :controller=>"tags"}
+              new_tag GET    /tags/new(.:format)                   {:action=>"new", :controller=>"tags"}
+             edit_tag GET    /tags/:id/edit(.:format)              {:action=>"edit", :controller=>"tags"}
+                  tag GET    /tags/:id(.:format)                   {:action=>"show", :controller=>"tags"}
+                      PUT    /tags/:id(.:format)                   {:action=>"update", :controller=>"tags"}
+                      DELETE /tags/:id(.:format)                   {:action=>"destroy", :controller=>"tags"}
+          bittu_books GET    /books/bittu(.:format)                {:action=>"bittu", :controller=>"books"}
+                books GET    /books(.:format)                      {:action=>"index", :controller=>"books"}
+                      POST   /books(.:format)                      {:action=>"create", :controller=>"books"}
+             new_book GET    /books/new(.:format)                  {:action=>"new", :controller=>"books"}
+            edit_book GET    /books/:id/edit(.:format)             {:action=>"edit", :controller=>"books"}
+                 book GET    /books/:id(.:format)                  {:action=>"show", :controller=>"books"}
+                      PUT    /books/:id(.:format)                  {:action=>"update", :controller=>"books"}
+                      DELETE /books/:id(.:format)                  {:action=>"destroy", :controller=>"books"}
+          books_bittu GET    /books/bittu(.:format)                {:controller=>"books", :action=>"bittu"}
+                      GET    /user_sessions(.:format)              {:action=>"index", :controller=>"user_sessions"}
+                      POST   /user_sessions(.:format)              {:action=>"create", :controller=>"user_sessions"}
+                      GET    /user_sessions/new(.:format)          {:action=>"new", :controller=>"user_sessions"}
+                      GET    /user_sessions/:id/edit(.:format)     {:action=>"edit", :controller=>"user_sessions"}
+                      GET    /user_sessions/:id(.:format)          {:action=>"show", :controller=>"user_sessions"}
+                      PUT    /user_sessions/:id(.:format)          {:action=>"update", :controller=>"user_sessions"}
+                      DELETE /user_sessions/:id(.:format)          {:action=>"destroy", :controller=>"user_sessions"}
+                login GET    /login(.:format)                      {:action=>"new", :controller=>"user_sessions"}
+               logout GET    /logout(.:format)                     {:action=>"destroy", :controller=>"user_sessions"}

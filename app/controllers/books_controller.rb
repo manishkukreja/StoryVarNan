@@ -2,7 +2,6 @@
 
   
   def index
-    
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]    
     @language = Language.find(params[:language_id]) if params[:language_id]
     @narrator_list = Book.find_narrator(params)
@@ -11,10 +10,10 @@
         @books=Book.search_published(params[:search])
     else
         @books=Book.find_book(params) 
-    end     respond_to do |format|
+    end
+     respond_to do |format|
      format.html {@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
      format.rss
-      
     end
   end
 
@@ -89,8 +88,6 @@
     end
   end
   
-  def bittu
   
-  end
 
 end

@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 #gem 'sqlite3'
 
+gem "wice_grid", '3.2.0.pre1'
 gem 'authlogic'
 
 gem 'aws-s3'

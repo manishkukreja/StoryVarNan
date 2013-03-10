@@ -1,0 +1,9 @@
+<%= form_tag "", method: :get do %>
+	<div >
+	    <div class="categories">
+	    <h2>Narrator</h2>
+        <%= select_tag "Narrator",options_for_select(@narrator_list,"narrator"),:prompt => "Please Select",:id=> "narrator_name"%>
+      </div>         
+  </div>
+
+<%end%>

@@ -123,6 +123,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
+    wice_grid (3.2.0.pre1)
     will_paginate (3.0.3)
     xml-simple (1.1.1)
 
@@ -141,4 +142,5 @@ DEPENDENCIES
   pg
   rails (= 3.1.0)
   thinking-sphinx
+  wice_grid (= 3.2.0.pre1)
   will_paginate (>= 3.0.pre2)

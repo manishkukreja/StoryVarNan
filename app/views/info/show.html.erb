@@ -1,0 +1,6 @@
+<%= render params[:id].to_s.downcase%>
+
+<% for other_book in @other_books%>
+	<p id="selected_book"><%= link_to other_book.name, book_path(other_book.id),
+					:onclick => "window.open.location.reload(); window.close();" %></br></p>
+<%end%>
