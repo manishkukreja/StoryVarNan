@@ -1,19 +1,35 @@
+# development:
+#   adapter: postgresql
+#   database: database_dev
+#   username: ManishKukreja
+#   password: unix11
+#   template: template0
+#   pool: 5
+#   timeout: 5000
+#   port: 5432
+
+# test:
+#   adapter: postgresql
+#   database: database_test
+#   username: ManishKukreja
+#   password: unix11
+#   template: template0
+#   pool: 5
+#   timeout: 5000
+#   port: 5432
+
 development:
   adapter: postgresql
-  database: database_dev
-  username: ManishKukreja
+  database: bookshelf_pg_dev
+  username: postgres
   password: unix11
-  template: template0
   pool: 5
   timeout: 5000
-  port: 5432
-  
+
 test:
   adapter: postgresql
-  database: database_test
-  username: ManishKukreja
+  database: db/bookshelf_pg_test
+  username: postgres
   password: unix11
-  template: template0
   pool: 5
   timeout: 5000
-  port: 5432
