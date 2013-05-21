@@ -1,0 +1,28 @@
+<%= grid(@comments_grid) do |g|
+		g.column :name=> 'Book' do |task|
+			task.book.name
+		end
+		# g.column :name=> 'Book',:attribute => 'book_id', :custom_filter => Book.find(:all).map{|bk| [bk.id,bk.name]} do |task|
+		# 	task.book.name
+		# end
+		# g.column :name=> 'Book', :attribute => 'book_id'do |task|
+		# 	task.book.name
+		# end 
+
+		g.column :name=> 'Comments', :attribute => 'content'do |task|
+			task.content
+		end 
+		g.column  :name=> 'User' do |task|
+			task.user.username
+		end
+		# g.column :name=> 'User', :attribute => 'user_id'do |task|
+		# 	task.user.username
+		# end
+		# g.column  :name=> 'User' ,:attribute => 'id',:model => User,:custom_filter => User.find(:all).map{|us| [us.id, us.username]}  do |task|
+		# 	task.user.username
+		# end
+		g.column do |task|
+			link_to('Edit',edit_comment_path(task))
+		end
+	end	
+%>

@@ -1,1 +1,12 @@
-Diya has been narrating books since her childhood.
+<div>
+	<ul>
+		<p><%=@book.narrator%> has been narrating books since childhood.</p>
+		<p>Other Books from <%=@book.narrator%> -
+			<% for other_book in @other_books%>
+				<li>
+					 <i><%=link_to "#{other_book.name}" , book_path(other_book.id)%></i>
+				</li>
+			<%end%>
+		</p>
+	</ul>
+</div>

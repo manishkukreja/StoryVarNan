@@ -3,11 +3,11 @@
     <span class="position">New comment as</span>
   <% end %>
   <span class="name">
-    <% if comment.user %>
-      <%= link_to comment.user.username, comment.user %>
-    <% else %>
+    <%# if comment.user %>
+      <%#= link_to comment.user.username, comment.user %>
+    <%# else %>>New comment a
       <%= link_to_unless comment.site_url.blank?, comment.f_name, fix_url(comment.site_url), :rel => "nofollow" %>
-    <% end %>
+    <%# end %>
   <% if params[:controller] != "book" %>
   		<%#= link_to comment, book_path%>
          <%#= link_to comment, book_path%> <!--(comment.book, :view => "comments", :anchor => "comment_#{comment.id}") --!>

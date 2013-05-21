@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  friend_name: MyString
+  friend_email: MyString
+  invitation_date: 2013-04-10
+
+two:
+  user_id: 1
+  friend_name: MyString
+  friend_email: MyString
+  invitation_date: 2013-04-10

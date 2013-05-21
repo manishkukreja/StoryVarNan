@@ -1,6 +1,10 @@
 <div id="accordion">		
 	     	 <h3>About <%=@book.narrator %></h3>
 	     	 	<div> 
-	     	 		<p><%= render "info/#{@book.narrator}"%></p>
+	     	 		<p>Other Books from <%=@book.narrator%> -
+						<% for other_book in @other_books%>
+					 		<%=link_to "#{other_book.name}" , book_path(other_book.id)%>
+						<%end%>
+					</p>
 	     	 	</div>	    	
 </div>

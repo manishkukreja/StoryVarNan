@@ -1,4 +1,4 @@
-<script type="text/javascript">
+  <script type="text/javascript">
 
 $(document).ready(function(){
   $( "#accordion" ).accordion({ autoHeight: false,collapsible:true,active: false});
@@ -20,13 +20,14 @@ $(document).ready(function(){
 
 		  <!-- <embed 
 		  		src='<%= @book.audio_url%>' ,
-		  		height='600' ,
-		  		width='600' ,
+		  		height='100' ,
+		  		width='100' ,
 		  		
 		  />  --> 
 		  <%if params[:autoplay]%>
 		  	<iframe width="420" height="315" src="<%=@book.permalink%>?autoplay=1"  frameborder="0" autoplay="autoplay" allowfullscreen></iframe>
 		  <%else%>
+      
 		  	<iframe width="420" height="315" src="<%=@book.permalink%>?autoplay=0"  frameborder="0" autoplay="autoplay" allowfullscreen></iframe>	
      	 <%end%>
      </script>
@@ -57,6 +58,9 @@ $(document).ready(function(){
 	</video> -->
 <!--	
 =end -->
+
+<%#= raise Rails.application.class.routes.url_helpers.rate_path.inspect %>
+<p id="notice"><%= notice %></p>
       <h1>
       <span class="position">#<%= @book.position %></span>
       <%= @book.name %>
@@ -66,15 +70,18 @@ $(document).ready(function(){
       <%= raw @book.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
       <% unless @book.published? %>
         <span class="unreleased">NOT YET RELEASED</span>
-      <% end %>
+      <% end %> |
+      <%= link_to "Invite Friends","#", 
+      :onclick => "window.open('/books/#{@book.id}/invite_friends','Invite friend','resizable=0, scrollbars=0,height=150,width=200').focus()",:controller=>"books",:action=> 'invite_friends',:remote => true %>
     </div>
-    <div id="accordion">
-	    				
-	     		 <h3 >About <strong><%=@book.narrator%></strong></h3>
+    Audio : <%= rating_for @book, "audio" %>
+    Video : <%= rating_for @book, "video" %>
+    Overall : <%= rating_for @book, "overall" %>
+    <div id="accordion">	    				
+	     		 <h3 >About <strong><u><%=@book.narrator%></u></strong></h3>
 	     	 		<div> 	     	 			
-	     	 			<p><%= render "info/#{@book.narrator}"%></p>
+	     	 			<p><%= render "info/#{@book.narrator.downcase}"%></p>
 	     	 		</div>
-	     	 			    		 	
 		</div>
     <div class="description"><%= @book.description %></div>
     <div class="watch">
@@ -106,11 +113,10 @@ $(document).ready(function(){
   </div>
   <ul class="nav horizontal">
     <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>   <!-- Tab_link method in application_helper -->
-    <li><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>  <!-- Not able to find comments method -->
+    <li><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
     <li><%= tab_link "Similar books", :view => "similar" %></li>
     <%= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
     <%= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>
-    
   </ul>
   <div class="nav_section">
     <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %></b>

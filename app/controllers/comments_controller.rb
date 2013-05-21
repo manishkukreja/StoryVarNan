@@ -1,13 +1,22 @@
 class CommentsController < ApplicationController
 #before_filter :require_user
+  before_filter :logging_required
 
   def index
-    @comments = Comment.search(params[:comment_search]).recent.paginate(:page => params[:page], :per_page => 10)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @comments }
-    end
+    if is_user_admin?
+      @comments_grid = initialize_grid(Comment,
+      :include => [:book,:user]
+      )
+    else
+      @comments_grid = initialize_grid(Comment.where(:user_id => session[:user_credentials_id].to_s),
+      :include => [:book,:user]
+      )
+    end    
+    render :my_comments
+    # respond_to do |format|
+    #   format.html  
+    #   #format.xml  { render :xml => @comments }
+    # end
   end
 
  
@@ -16,7 +25,6 @@ class CommentsController < ApplicationController
   # GET /comments/new.xml
   def new
     @comment = Comment.new(:parent_id => params[:parent_id],:book_id => params[:book_id], :user => current_user)
-
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @comment }
@@ -26,6 +34,8 @@ end
   def edit
     @comment = Comment.find(params[:id])
   end
+
+
  
   def create 
     @comment = current_user.comments.build(params[:comment])
@@ -48,6 +58,7 @@ end
   
   
   def update
+    @comment = Comment.find(params[:id])
     @comment.update_attributes(params[:comment])
     respond_to do |format|
       format.html do
@@ -61,14 +72,28 @@ end
     end
   end
 
-  def destroy
+  # def destroy
+  #   # @comment.destroy
+
+  #   flash[:notice] = "Deleted comment. #{undo_link}"
+  #   respond_to do |format|
+
+  #     format.html { redirect_to book_path(@comment.book, :view => "books/comments") }
+  #     format.js
+  #   end
+  # end
+
+def destroy
+    @comment = Comment.find(params[:id])
+    book_id= @comment.book_id
     @comment.destroy
-    flash[:notice] = "Deleted comment. #{undo_link}"
+
     respond_to do |format|
-      format.html { redirect_to book_path(@comment.book, :view => "comments") }
-      format.js
+      format.html { redirect_to book_path(book_id,:view => "comments") }
+      format.json { head :no_content }
     end
   end
+
 
   private
 

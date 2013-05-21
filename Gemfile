@@ -1,34 +1,48 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
 
-gem "wice_grid", '3.2.0.pre1'
+gem "wice_grid", '3.2.0.pre4'
 gem 'authlogic'
 
 gem 'aws-s3'
 
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 
-gem 'thinking-sphinx'
+#gem 'thinking-sphinx'
 
-gem "will_paginate", ">= 3.0.pre2"
+gem "will_paginate", "3.0.pre4"
 
 gem 'carrierwave'
 
 gem 'ancestry'
 
-gem "mail", "2.3.0"
+gem "mail", "2.4.4"
 
 gem 'pg'
 
 gem 'hirb'
 
 gem "fog", "~> 1.3.1"
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>=1.0.3'
+end
+
+gem 'jquery-rails'
+gem 'letsrate'
+
+gem "kaminari", "~> 0.14.1"
+
+ gem 'execjs' 
+ gem 'therubyracer'
 
 #gem 'rmagick'
 

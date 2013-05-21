@@ -1,0 +1,7 @@
+<%#for comment in @comments %>
+	<%#= User.find(session[:user_credentials_id]).username%>
+	<%#= comment.book.name%>
+	<%#= comment.content%></br>
+<%#end%>
+
+<%= render 'comments_grid'%>	

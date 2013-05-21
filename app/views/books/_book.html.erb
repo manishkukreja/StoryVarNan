@@ -13,26 +13,29 @@
 	    <h2><%= link_to book.name, book %></h2>
 	    <div class="description"><%= book.description %></div>
 	    <div class="watch">
-	     <%= link_to "Watch Video", book_path(book, :autoplay => true), :class => "watch_button" %>
+	    <% if current_user%>
+	      <%= link_to "Watch Video", book_path(book, :autoplay => true), :class => "watch_button" %>
+	      <%#= raise book.id.inspect%>
+	      <%= button_to "Add to BookShelf",line_items_path(:book_id => book.id), :class => "watch_button" ,:remote=> true %>
+	        <%if can? :update, :books%>
+		        <%= link_to "Edit Book", edit_book_path(book),:class => "watch_button" %>
+	        <%end%>
+	    <%end%>
+
 	    </div>     
 	     <!-- <p id="author"> About <%#=link_to book.narrator,' ', 
 	       	 :onclick => "window.open('info/#{book.narrator}','info','resizable=0, scrollbars=0,height=550,width=550').focus()",:controller=> 'info',:action=> 'show',:remote => true %></p>  -->
-	    <div id="accordion">
-	    	<% if @narrator_list.include?(book.narrator)%>			
+	    <!-- <div id="accordion">
+	    	<%#if @narrator_list.include?(book.narrator)%>			
 	     		 <h3 >About</h3>
 	     	 		<div> 
 	     	 			<p>this is a test for narrator></p>
 	     	 		</div>
-	     	<%end%> 			    		 	
-		</div>
+	     	<%#end%> 			    		 	
+		</div> -->
 	       
 	       
-	       <%if can? :update, :books%>
-	         </br>
-		        <div> 
-		        	<%= link_to "Edit Book", edit_book_path(book),:class => "read_button" %>
-		        </div>	
-	       <%end%>
+	       
 	    
 	</div>
     <div class="clear"></div>

@@ -14,11 +14,10 @@
       	<%if can? :update, comment%>
       	<%= link_to "Edit", edit_comment_path(comment)%>
       	<%end%>
-      	<%if can? :destroy, comment%>
-      	<%= link_to "Delete", comment, :method => :delete %>
-
-      	<%end%>
-
+      	<% if can? :destroy, comment%>
+        <%#= button_to('Delete 1', comment_path(comment), {:method=> :delete, :confirm=> "You sure", :remote => true}) if can? :destroy, comment%>        
+        <%= button_to "Delete Me" , comment, :method=> :delete,:action=>:destroy, :controller=>:comments, :id=>comment %>
+        <%end%>
       </div>
     </div>
   </div>

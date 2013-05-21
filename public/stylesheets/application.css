@@ -1,3 +1,12 @@
+/*
+*= require_self
+*= require line_items
+*= require reading_lists
+*= require wice_grid
+*= require_tree
+
+*/
+
 body {
   background-color: #FFF;
   font-family: Verdana, Helvetica, Arial;

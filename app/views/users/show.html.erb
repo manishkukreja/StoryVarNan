@@ -11,10 +11,17 @@
 </p>
 
 <p>
-  <b>Password:</b>
-  <%= @user.password %>
+  <b>Invited Friends:</b>
+  </br>
+    <%= render 'invitation_grid'%>
+    </br>
+
 </p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if is_user_admin?%>
+	<%= link_to 'Back', users_path %>
+<% else%>
+	<%= link_to 'Back', root_url %>
+<%end%>

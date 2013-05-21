@@ -1,6 +1,11 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-$(function() {
+//= require jquery_ujs
+//= require jquery-ui
+//= require wice_grid
+//= require_tree
+
+$(document).ready(function() {
   if ($("#episode").length > 0) {
     sublimevideo.ready(function() {
       if ($("#episode video").length > 0) {
@@ -63,34 +68,6 @@ $(function() {
       }
     });
   }
-
-
-
-  $('#narrator_name').on(change,function(){
-    alert("you have changed me");
-  })
-});
-
-
-// $(function(){
-  //  $('#narrator').hide();
-  // $('#more_filters').click(function(){
-  //   var a ='Less Filters'
-  //     // var a = document.getElementById('more_filters')
-  //     alert(a)
-  //     $('#narrator').toggle()
-  //     $('#mote_filters').text(a);
-  // })
-
-$(function(){
-  
-  $("#selected_book").click(function(){
-    var book_name = $(this).val('href');
-    alert(book_name);
-  })
-});
-
-
 
 
 });

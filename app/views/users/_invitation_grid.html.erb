@@ -1,0 +1,15 @@
+<%= grid(@invitation_grid,:show_filters => :no) do |g|
+		g.column :name=> 'Name',:attribute=> 'friend_name' do |task|
+			task.friend_name
+		end 
+		g.column :name=> 'Email' ,:attribute=> 'friend_email' do |task|
+			task.friend_email
+		end
+		g.column :name=> 'Date' ,:attribute=> 'invitation_date' do |task|
+			task.invitation_date
+		end
+		g.column :name=> 'Status' ,:attribute => 'invitation_status' do |task|
+			task.invitation_status
+		end
+	end	
+%>

@@ -14,10 +14,7 @@
 			<h2>Language</h2>
 			<ul>
 				<% for language in Language.all %>
-				<!-- <li><%#= link_to_unless(params[:language_id].to_i == language.id, language.name,params.merge(:language_id => language.id, :page =>nil))%></li> -->
 				<li>
-					<%#= raise language.id.to_s.inspect%>
-					<%#= raise (params[:language_id].present? && language.id.to_s.eql?(params[:language_id]) ? true : false).inspect%>
 					<%= radio_button_tag("language_id", language.id,params[:language_id].present? && language.id.to_s.eql?(params[:language_id]) ? true : false)%><%= language.name%>
 				</li>
 				<% end %>
@@ -40,24 +37,17 @@
 		</br>
 
 		<div id="more_filter">
-			<%#= link_to "More Filter", "#" %>
 			<a id="filter"href="#">More Filters</a>
- 
-			<div class="categories filter-box" style="display:none">
-
+			<div class="categories filter-box" id="extra_filters"style="display:none">
 				<h2>Narrator</h2>
-				<ul min-height:27px; max-height:120px; overflow:auto;>
+				<ul>
 					<% for narrator in @narrator_list %>
 					<li>
-						<%= radio_button_tag("narrator", narrator,params[:narrator] && narrator.to_s.eql?(params[:narrator]) ? true : false)%><%= narrator%>
+						<%= radio_button_tag("narrator", narrator,params[:narrator] && narrator.to_s.eql?(params[:narrator]) ? true : false, class:"narrator_name")%><%= narrator%>
 					</li>
 					<% end %>
-				</ul>
-				
-				<%#= select_tag "Narrator",options_for_select(@narrator_list,"narrator"),:prompt => "Please Select",:id=> "narrator_name"%>
-				
+				</ul>		
 			</div>
-
 		</div>
         <%= submit_tag "Search"%>
         <%end%>
@@ -160,12 +150,21 @@
 		$('#more_filter').click(function() {
 			$(".filter-box").slideDown(100);
 			$('#filter').text("Less Filters");
-		})
-		 
-		alert($('#filter').text); 
-		$('#narrator_name').change(function() {
+			// $('.narrator_name').click(function(){
+			// 	if ($('.narrator_name').is(':checked'))
+			// 		alert("checked")
+	  //  		  $(".filter-box").show();
+			// 	  $('#filter').text("Less Filters");
+			// 	// else
+			// 	  // $("#more_filter").slideUp();
+			// });
+			// $(document).on("click", '.filter-box ul li :checkbox', function(){
+      if (this.checked==true)
+      alert("click")  
+		});	
+		$('.filter-box').change(function() {
 			val = $(narrator_name).val();
-			alert(val);
+			alert('val')
 		})
 
 		$("#accordion").accordion({

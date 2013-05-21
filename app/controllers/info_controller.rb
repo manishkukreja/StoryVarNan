@@ -6,9 +6,7 @@ class InfoController < ApplicationController
   end
   
   def show
-    #@narrator_list = Book.find_narrator(params)
-     @other_books = Book.find_all_by_narrator(params[:id])
-     
+    @other_books = Book.find_all_by_narrator(params[:id])
     render layout: false
   end
   

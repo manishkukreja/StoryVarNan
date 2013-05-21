@@ -1,5 +1,11 @@
 Bookshelf::Application.routes.draw do
   
+  match '/rate' => 'rater#create', :as => 'rate'
+
+  resources :line_items
+
+  resources :reading_lists
+
   resources :terminologies
 
   resources :languages
@@ -46,7 +52,14 @@ Bookshelf::Application.routes.draw do
   
   
 
-  resources :books
+  resources :books do
+    collection do
+      get :reading_list_pane
+    end
+    member do
+      get :invite_friends
+    end  
+  end    
     
   
   

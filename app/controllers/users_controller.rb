@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
 #before_filter :authorize
-
-before_filter :load_current_user, :only => [:edit, :update]
-load_and_authorize_resource
+before_filter :logging_required
+before_filter :load_current_user , :only => [:edit, :update]
+#load_and_authorize_resource
 
 
   def index
-    @users = User.all
-
+    if is_user_admin?
+      @users = User.all
+    end    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -28,16 +29,34 @@ load_and_authorize_resource
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    if is_user_admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end  
+  end
+
+  def show
+    if is_user_admin?
+      @user = User.find(params[:id])
+    else 
+       @user = User.find(session[:user_credentials_id])
+    end
+     @invitation_grid = initialize_grid(UserInvitee, :conditions => ['user_id = ?',@user.id]
+        )
+     
   end
 
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
+        already_invited = UserInvitee.find_by_friend_email(params[:user][:email])
+        if already_invited
+          already_invited.update_attributes(:invitation_status => 'Accepted')
+        end  
         format.html { redirect_to(root_url, :notice => 'Registration was successful') }
         #format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -75,10 +94,20 @@ load_and_authorize_resource
     end
   end
   
+  def invitation_status_check(friend_detail)
+    UserInvitee.find_all_by_user_id(@user.id)
+    a = friend_detail.map{|a| a.friend_email}
+    a.each do |frd_email|
+       if User.all.map{|z| z.email}.include?(frd_email)
+          return "Accepted"
+        else
+          return "Still Pending"
+        end
+    end
+  end
+
    private
   def load_current_user
     @user = current_user
   end
 end
-  
-

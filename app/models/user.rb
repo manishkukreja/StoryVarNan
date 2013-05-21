@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  #attr_accessible :name, :email, :site_url, :email_on_reply
+  attr_accessible :name, :email, :site_url, :email_on_reply,:username, :role, :password, :password_confirmation
   acts_as_authentic
   has_many :comments
+  has_many :user_invitee
+  letsrate_rater
   
   def banned?
     banned_at
@@ -10,5 +12,4 @@ class User < ActiveRecord::Base
   def role?(role)
     role.include? roles.to_s
   end
-  
 end

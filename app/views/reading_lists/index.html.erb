@@ -1,0 +1,25 @@
+<h1>Listing reading_lists</h1>
+
+<table>
+  <tr>
+    <th>Book</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reading_lists.each do |reading_list| %>
+  <tr>
+    <td><%= reading_list.book_id %></td>
+    <td><%= reading_list.user_id %></td>
+    <td><%= link_to 'Show', reading_list %></td>
+    <td><%= link_to 'Edit', edit_reading_list_path(reading_list) %></td>
+    <td><%= link_to 'Destroy', reading_list, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reading list', new_reading_list_path %>

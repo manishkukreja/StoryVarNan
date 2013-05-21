@@ -6,6 +6,8 @@ class Book < ActiveRecord::Base
   mount_uploader :audio, AudioUploader
   has_many :comments, :dependent => :destroy
   has_many :languages, :dependent => :destroy
+  has_many :line_items
+  letsrate_rateable "audio", "video", "overall"
   
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
@@ -21,7 +23,7 @@ end
 ##
   
   
-###Method to search based on Tag and language
+###Method to search based on Tag , language and narrator
 def self.find_book(params)
   where_sql=[]
   if params[:language_id]
