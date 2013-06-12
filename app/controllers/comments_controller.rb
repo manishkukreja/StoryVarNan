@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def index
     if is_user_admin?
       @comments_grid = initialize_grid(Comment,
-      :include => [:book,:user]
+      :include => [:book]
       )
     else
       @comments_grid = initialize_grid(Comment.where(:user_id => session[:user_credentials_id].to_s),

@@ -65,12 +65,13 @@
       <div class="logo"><%= link_to image_tag("storyvarnan_6.png", :size => "366x111",:alt => "StoryVarNan - Audio stories for little one's"), root_path %></div>
     <ul class="subscribe horizontal">
       <div id='user_nav'>
-  	  	<%if current_user%>      
-          <% l_items = LineItem.find_all_by_reading_list_id(session[:reading_list_id])%>
+  	  	<%if current_user%>   
+          <% l_items = LineItem.find_all_by_user_id(session[:user_credentials_id])%>
   		  	<%= link_to current_user.username, edit_user_path(current_user.id),:id=>'username'%> |
           <%= link_to "Logout", logout_path%> |
           <div id='user_top_nav_links'>
-            <a href="#">My BookShelf</a> <b><%=l_items.count%></b> |
+            <%= link_to "My BookShelf", reading_list_path(session[:user_credentials_id])%>
+                  <b><%=l_items.count%></b> |
               <div id='reading_list' style='display:none' > 
                 <% for book in l_items %>
                   <li>

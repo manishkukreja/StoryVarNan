@@ -46,7 +46,17 @@
 						<%= radio_button_tag("narrator", narrator,params[:narrator] && narrator.to_s.eql?(params[:narrator]) ? true : false, class:"narrator_name")%><%= narrator%>
 					</li>
 					<% end %>
-				</ul>		
+				</ul>
+   <!-- This Code is for checkbox for Narrator -->
+				<!-- <ul>
+					<%#for narrator in @narrator_list %>
+					<li>
+						<%#= check_box_tag("narrator[]", narrator,params[:narrator] && narrator.to_s.eql?(params[:narrator]) ? true : false, class:"narrator_name")%><%= narrator%>
+					</li>
+					<%# end %>
+				</ul> -->
+
+
 			</div>
 		</div>
         <%= submit_tag "Search"%>
@@ -115,7 +125,6 @@
 	<div class="grid">
 		<% for book in @books %>
 		<div class="book">
-
 			<%= link_to image_tag(book.image_link.to_s ,:size => "200x125",:alt => book.name), book%>
 
 			<div class="screenshot">

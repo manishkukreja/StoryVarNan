@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 #before_filter :authorize
+<<<<<<< HEAD
 before_filter :logging_required, :except => [:create, :new]
+=======
+before_filter :logging_required , :except => [:create , :new]
+>>>>>>> upstream/image_link
 before_filter :load_current_user , :only => [:edit, :update]
 #load_and_authorize_resource
 

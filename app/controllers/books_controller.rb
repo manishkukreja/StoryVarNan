@@ -1,11 +1,11 @@
  class BooksController < ApplicationController
+  before_filter :logging_required ,:except=> [:index,:show]
 
   
   def index
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]    
     @language = Language.find(params[:language_id]) if params[:language_id]
     @narrator_list = Book.find_narrator(params)
-        
     if params[:search]
         @books=Book.search_published(params[:search])
     else
@@ -32,6 +32,8 @@
 
   def new
     @book = Book.new
+    @categories_list =  Tag.all
+    @narrator_list = Book.find_narrator(params)
     @book.position = Book.maximum(:position).to_i + 1
   
   end
@@ -39,13 +41,17 @@
 
   def edit
     @book = Book.find(params[:id])
+
   end
 
   def create
+    if params[:book][:narrator].eql?("Other")
+      params[:book][:narrator] = params[:temp_narrator_name]
+    end
     @book = Book.new(params[:book])
-
     respond_to do |format|
       if @book.save
+        create_tagging(@book.id)
         format.html { redirect_to(@book, :notice => 'Book was successfully created.') }
         format.xml  { render :xml => @book, :status => :created, :location => @book }
       else
@@ -103,6 +109,16 @@
          UserInvitee.create(:user_id=> session[:user_credentials_id], :friend_name=>params[:friend_name],:friend_email=> params[:friend_email],:invitation_date=> Date.today,:invitation_status=> 'Pending' )
         end 
       end
+  end
+
+  def create_tagging(var)
+    if params[:tag_ids].count > 1
+      params[:tag_ids].each {|tag|
+        @tagging = Tagging.create(:book_id => @book.id,:tag_id => tag)
+      }
+    else 
+       @tagging = Tagging.create(:book_id => @book.id,:tag_id => params[:tag_ids].first)
+    end   
   end
 
 end

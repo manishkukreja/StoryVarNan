@@ -18,6 +18,7 @@ gem 'mysql2', '0.3.12b4'
 
 gem 'thinking-sphinx'
 
+
 gem "will_paginate", "3.0.pre4"
 
 gem 'carrierwave'

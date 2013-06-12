@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Book:</b>
-  <%= @reading_list.book_id %>
+ 
+  <% @reading_list.each do |list|%>
+   <b>Book:</b>
+  	<%= Book.find(list.book_id).name %>
+  	<%= button_to "X", list,:method=> :delete,:action=>:destroy, :controller=>:line_items, :remote=> true%>
 </p>
-
-<p>
-  <b>User:</b>
-  <%= @reading_list.user_id %>
-</p>
+<%end%>
 
 
 <%= link_to 'Edit', edit_reading_list_path(@reading_list) %> |
-<%= link_to 'Back', reading_lists_path %>
+<%= link_to 'Back', books_path %>
