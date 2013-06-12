@@ -12,7 +12,7 @@
         @books=Book.find_book(params) 
     end
      respond_to do |format|
-     format.html {@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
+     format.html #{@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
      format.rss
     end
   end

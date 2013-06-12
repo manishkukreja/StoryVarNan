@@ -14,7 +14,9 @@ gem 'aws-s3'
 
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 
-#gem 'thinking-sphinx'
+gem 'mysql2', '0.3.12b4'
+
+gem 'thinking-sphinx'
 
 gem "will_paginate", "3.0.pre4"
 
@@ -29,6 +31,10 @@ gem 'pg'
 gem 'hirb'
 
 gem "fog", "~> 1.3.1"
+
+gem 'execjs'
+
+gem 'therubyracer'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"

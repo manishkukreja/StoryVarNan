@@ -74,6 +74,7 @@ GEM
     hike (1.2.2)
     hirb (0.7.1)
     i18n (0.6.4)
+    innertube (1.0.2)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -88,8 +89,10 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    middleware (0.1.0)
     mime-types (1.23)
     multi_json (1.7.3)
+    mysql2 (0.3.12b4)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.7)
@@ -124,6 +127,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
+    riddle (1.5.6)
     ruby-hmac (0.4.0)
     sass (3.2.9)
     sass-rails (3.2.6)
@@ -138,6 +142,12 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
+    thinking-sphinx (3.0.3)
+      activerecord (>= 3.1.0)
+      builder (>= 2.1.2)
+      innertube (>= 1.0.2)
+      middleware (>= 0.1.0)
+      riddle (>= 1.5.6)
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.12)
@@ -170,10 +180,12 @@ DEPENDENCIES
   kaminari (~> 0.14.1)
   letsrate
   mail (= 2.4.4)
+  mysql2 (= 0.3.12b4)
   pg
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
   therubyracer
+  thinking-sphinx
   uglifier (>= 1.0.3)
   wice_grid (= 3.2.0.pre4)
   will_paginate (= 3.0.pre4)

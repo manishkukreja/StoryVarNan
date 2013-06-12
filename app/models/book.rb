@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link
+  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link, :narrator, :language
   has_many :taggings,:dependent => :destroy
   has_many :tags, :through => :taggings ,:dependent => :destroy
   mount_uploader :image, ImageUploader
