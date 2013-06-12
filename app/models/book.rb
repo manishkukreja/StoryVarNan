@@ -1,9 +1,7 @@
 class Book < ActiveRecord::Base
-<<<<<<< HEAD
-  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link, :narrator, :language
-=======
+
   attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link,:comments_count, :legacy, :remote_audio_url, :file_sizes,:language_id,:narrator
->>>>>>> upstream/image_link
+
   has_many :taggings,:dependent => :destroy
   has_many :tags, :through => :taggings ,:dependent => :destroy
   mount_uploader :image, ImageUploader
