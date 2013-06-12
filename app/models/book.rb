@@ -17,7 +17,7 @@ class Book < ActiveRecord::Base
   scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
   validates :name,:description,:notes,:narrator,:permalink,:image_link , :presence => true
-  validates :name ,:uniqueness => true
+  validates :name ,:uniqueness => false
   
   
   
@@ -26,8 +26,6 @@ def self.find_narrator(params)
   Book.find_by_sql('select distinct narrator from books').map{|i| i.narrator}
 end
 ##
-  
-  
 ###Method to search based on Tag , language and narrator
 def self.find_book(params)
   where_sql=[]
