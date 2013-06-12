@@ -1,0 +1,10 @@
+<%= form_tag "", method: :get do %>
+	<div >
+	    <div class="field">
+          <%= label_tag :category %><br />
+    		<%for category in Tag.all %>
+      		  <%= check_box_tag("tag_ids[]", category.id)%><%= category.name%>
+            <%end%>
+        </div>         
+    </div>
+<%end%>

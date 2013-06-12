@@ -3,5 +3,7 @@
 	<%#= comment.book.name%>
 	<%#= comment.content%></br>
 <%#end%>
-
-<%= render 'comments_grid'%>	
+<%#= submit_tag "Search", class:"btn wg-external-submit-button"%>
+	<button class="btn resetBtn wg-external-submit-button" data-grid-name="grid" id="reset_program_filter">Submit</button>       
+    <button class="btn resetBtn wg-external-reset-button" data-grid-name="grid" id="	reset_program_filter">Reset</button>
+<%= render 'comments_grid'%>

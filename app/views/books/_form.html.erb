@@ -1,59 +1,107 @@
-<%= form_for @book, :html => {:multipart => true} do |f| %>
+  <%= form_for @book, :html => {:multipart => true} do |f| %>
   
 
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  
+
   <div class="field">
-    <%= f.label :permalink %><br />
+    <%= f.label :category %><br />
+    <%for category in Tag.all %>
+      <%= check_box_tag("tag_ids[]", category.id ,(is_persist = Tagging.where("book_id = ? AND tag_id = ?" , params[:id],category.id).present? ? true : false))%><%= category.name%>  
+    <%end%>
+  </div>
+
+   <div class="field">
+    <%= f.label :language %><br />
+    <%for lang in Language.all %>
+      <%= f.radio_button(:language_id, lang.id) %><%= lang.name%>
+    <%end%>
+  </div>
+
+  <div id= "select_narrator" class="field">
+    <%= f.label :narrator %><br />
+    <%= f.select :narrator , Book.select('DISTINCT narrator').map {|m| m.narrator} << ["Other"],:prompt => "Select Narrator"%>
+    <dl id="other_narrator_name" style="display:none"> 
+      <dd>
+          <%= text_field_tag (:temp_narrator_name)%>
+      </dd>
+    </dl>
+  </div>
+  <div class="field">
+    <%= f.label "Video Link" ,"Video Link"  %><br />
     <%= f.text_field :permalink %>
   </div>
   <div class="field">
-    <%= f.label :image_link %><br />
+    <%= f.label "Image Link" , "Image Link" %><br />
     <%= f.text_field :image_link %>
-  </div>
+  </div>  
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_field :description %>
   </div>
   <div class="field">
     <%= f.label :notes %><br />
     <%= f.text_area :notes %>
   </div>
   <div class="field">
-    <%= f.label :published_at %><br />
+    <%= f.label "Published At","Published At" %><br />
     <%= f.datetime_select :published_at %>
   </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.text_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :comments_count %><br />
-    <%= f.text_field :comments_count %>
-  </div>
-  <div class="field">
-    <%= f.label :legacy %><br />
-    <%= f.check_box :legacy %>
-  </div>
-  <div class="field">
-  	<%= f.file_field :image%>
+<!--   <div class="field">
+    <%#= f.label :position %><br />
+    <%#= f.text_field :position %>
+  </div> -->
+<!--   <div class="field">
+    <%#= f.label :comments_count %><br />
+    <%#= f.text_field :comments_count %>
+  </div> -->
+  <!-- <div class="field">
+    <%#= f.label :legacy %><br />
+    <%#= f.check_box :legacy %>
+  </div> -->
+<!--   <div class="field">
+    <%#= f.label :image %><br />
+  	<%#= f.file_field :image%>
   </div>
   </div><div class="field">
-  	<%= f.file_field :audio%>
+  <%#= f.label :audio %><br />
+  	<%#= f.file_field :audio%>
   </div>
   
   <div> 
-  	<%= f.label :remote_audio_url ,"OR Audio URL"%></br>
-  	<%= f.text_field :remote_audio_url%></br>
-  	</div>
+  	<%#= f.label :remote_audio_url ,"OR Audio URL"%></br>
+  	<%#= f.text_field :remote_audio_url%></br>
+  	</div> -->
   	
-  <div class="field">
-    <%= f.label :file_sizes %><br />
-    <%= f.text_area :file_sizes %>
-  </div>
+<!--   <div class="field">
+    <%#= f.label :file_sizes %><br />
+    <%#= f.text_field :file_sizes %>
+  </div> -->
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  
+  var narrator = $('#book_narrator').val();
+  
+    if (narrator=="Other")
+      $('#other_narrator_name').show();
+    $("#book_narrator").change(function() {
+      var narrator = $('#book_narrator').val();
+      alert(narrator)
+      if (narrator=="Other")
+        $('#other_narrator_name').show();
+      else
+        $('#other_narrator_name').hide();
+    });
+});
+
+</script>

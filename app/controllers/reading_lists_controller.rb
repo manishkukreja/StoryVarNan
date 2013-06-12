@@ -13,8 +13,7 @@ class ReadingListsController < ApplicationController
   # GET /reading_lists/1
   # GET /reading_lists/1.json
   def show
-    @reading_list = ReadingList.find(params[:id])
-
+    @reading_list = LineItem.find_all_by_user_id(session[:user_credentials_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @reading_list }

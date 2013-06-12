@@ -1,7 +1,8 @@
-<%= grid(@comments_grid) do |g|
-		g.column :name=> 'Book' do |task|
-			task.book.name
-		end
+<%= grid(@comments_grid ,hide_submit_button: false, hide_reset_button: false) do |g|
+		
+		g.column :name =>  'Book' , :attribute=> 'name', :model => 'Book' do |task|
+			task.book.name.to_s
+		end	
 		# g.column :name=> 'Book',:attribute => 'book_id', :custom_filter => Book.find(:all).map{|bk| [bk.id,bk.name]} do |task|
 		# 	task.book.name
 		# end

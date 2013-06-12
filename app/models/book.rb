@@ -1,18 +1,21 @@
 class Book < ActiveRecord::Base
-  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link
+  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link,:comments_count, :legacy, :remote_audio_url, :file_sizes,:language_id,:narrator
   has_many :taggings,:dependent => :destroy
   has_many :tags, :through => :taggings ,:dependent => :destroy
   mount_uploader :image, ImageUploader
   mount_uploader :audio, AudioUploader
   has_many :comments, :dependent => :destroy
-  has_many :languages, :dependent => :destroy
+  has_many :languages
   has_many :line_items
   letsrate_rateable "audio", "video", "overall"
+  accepts_nested_attributes_for :taggings
   
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
   scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
+  validates :name,:description,:notes,:narrator,:permalink,:image_link , :presence => true
+  validates :name ,:uniqueness => true
   
   
   

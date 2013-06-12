@@ -14,7 +14,9 @@ gem 'aws-s3'
 
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 
-#gem 'thinking-sphinx'
+gem 'thinking-sphinx'
+
+gem 'mysql2', '0.3.12b4'
 
 gem "will_paginate", "3.0.pre4"
 

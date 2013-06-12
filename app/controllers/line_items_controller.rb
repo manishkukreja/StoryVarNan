@@ -73,7 +73,6 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    #raise params.inspect
     @line_item = LineItem.find(params[:id])
     #@line_item = LineItem.find_by_user_id_and_book_id_and_reading_list_id(session[:user_credentials_id],params[:format],session[:reading_list_id])
     @line_item.destroy
