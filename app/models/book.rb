@@ -17,7 +17,7 @@ class Book < ActiveRecord::Base
   scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
   validates :name,:description,:notes,:narrator,:permalink,:image_link , :presence => true
-  validates :name ,:uniqueness => false
+  validates :name ,:uniqueness => true
   
   
   

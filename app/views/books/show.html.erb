@@ -113,7 +113,7 @@ $(document).ready(function(){
     <div class="clear"></div>
   </div>
   <ul class="nav horizontal">
-    <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>   <!-- Tab_link method in application_helper -->
+    <li class="selected"><%= tab_link "Transcript of the Book", :view => nil %></li>   <!-- Tab_link method in application_helper -->
     <li><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
     <li><%= tab_link "Similar books", :view => "similar" %></li>
     <%= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
