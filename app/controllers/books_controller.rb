@@ -12,7 +12,7 @@
         @books=Book.find_book(params) 
     end
      respond_to do |format|
-     format.html #{@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
+     format.html {@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
      format.rss
     end
   end
@@ -21,7 +21,7 @@
   def show
     @book = Book.find(params[:id])
     @comments = Comment.find_all_by_book_id(params[:id])
-    @other_books = Book.find_all_by_narrator(@book.narrator)    
+    @other_books = Book.books_list(@book)
     if params[:id] != @book.to_param   # Not understood 
       headers["Status"] = "301 Moved Permanently"
       redirect_to book_url(@book)
@@ -92,9 +92,9 @@
 
   def books_per_page
     case params[:view]
-    when "list" then 10
-    when "grid" then 4
-    else 4
+      when "list" then 10
+      when "grid" then 4
+      when  nil   then 5
     end
   end
   

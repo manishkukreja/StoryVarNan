@@ -16,6 +16,7 @@ class Book < ActiveRecord::Base
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
   scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
+  scope :books_list, lambda{|book| book ? {:conditions=> ['id != ? AND narrator = ? ',book.id , book.narrator]} : {} }
   validates :name,:description,:notes,:narrator,:permalink,:image_link , :presence => true
   validates :name ,:uniqueness => true
   
