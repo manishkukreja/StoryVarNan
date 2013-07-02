@@ -19,7 +19,7 @@ gem 'mysql2', '0.3.12b4'
 gem 'thinking-sphinx'
 
 
-gem "will_paginate", "~>3.0"
+gem "will_paginate", "3.0.4"
 
 gem 'carrierwave'
 
@@ -51,6 +51,17 @@ gem "kaminari", "~> 0.14.1"
  gem 'execjs' 
  gem 'therubyracer'
 
+ gem 'omniauth'
+ gem 'omniauth-facebook', '1.4.0'
+
+ gem 'faraday'
+
+group :development, :test do
+	gem 'cucumber-rails'
+	gem 'rspec-rails'
+	gem 'database_cleaner'
+	#gem 'webrat'
+end
 #gem 'rmagick'
 
 # Use unicorn as the web server
