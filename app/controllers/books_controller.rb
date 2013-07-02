@@ -1,18 +1,20 @@
  class BooksController < ApplicationController
   before_filter :logging_required ,:except=> [:index,:show]
-
+  #before_filter :current_screen 
+  
   
   def index
     @tag = Tag.find(params[:tag_id]) if params[:tag_id]    
     @language = Language.find(params[:language_id]) if params[:language_id]
     @narrator_list = Book.find_narrator(params)
+    @age_group = AgeGroup.where("id IN (?)",params[:age_group_ids])
     if params[:search]
         @books=Book.search_published(params[:search])
     else
-        @books=Book.find_book(params) 
+        @books=Book.find_book(params)
     end
      respond_to do |format|
-     format.html {@books = @books.paginate(:page => params[:page], :per_page => books_per_page) }
+     format.html {@books = @books.paginate(:page => params[:page], :per_page => 5) }
      format.rss
     end
   end
@@ -40,39 +42,45 @@
 
 
   def edit
-    @book = Book.find(params[:id])
+    unless is_user_admin?
+      @book = Book.find(params[:id])
+    end
 
   end
 
   def create
-    if params[:book][:narrator].eql?("Other")
-      params[:book][:narrator] = params[:temp_narrator_name]
-    end
-    @book = Book.new(params[:book])
-    respond_to do |format|
-      if @book.save
-        create_tagging(@book.id)
-        format.html { redirect_to(@book, :notice => 'Book was successfully created.') }
-        format.xml  { render :xml => @book, :status => :created, :location => @book }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @book.errors, :status => :unprocessable_entity }
+    unless is_user_admin?  
+      if params[:book][:narrator].eql?("Other")
+        params[:book][:narrator] = params[:temp_narrator_name]
       end
-    end
+      @book = Book.new(params[:book])
+      respond_to do |format|
+        if @book.save
+          create_tagging(@book.id)
+          format.html { redirect_to(@book, :notice => 'Book was successfully created.') }
+          format.xml  { render :xml => @book, :status => :created, :location => @book }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @book.errors, :status => :unprocessable_entity }
+        end
+      end
+    end  
   end
 
   def update
-    @book = Book.find(params[:id])
+    unless is_user_admin?
+      @book = Book.find(params[:id])
 
-    respond_to do |format|
-      if @book.update_attributes(params[:book])
-        format.html { redirect_to(@book, :notice => 'Book was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @book.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @book.update_attributes(params[:book])
+          format.html { redirect_to(@book, :notice => 'Book was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @book.errors, :status => :unprocessable_entity }
+        end
       end
-    end
+    end  
   end
 
   def destroy
@@ -120,5 +128,6 @@
        @tagging = Tagging.create(:book_id => @book.id,:tag_id => params[:tag_ids].first)
     end   
   end
+
 
 end

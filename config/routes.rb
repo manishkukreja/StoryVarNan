@@ -1,5 +1,8 @@
 Bookshelf::Application.routes.draw do
   
+  resources :social_authentications
+
+
   match '/rate' => 'rater#create', :as => 'rate'
 
   resources :line_items
@@ -38,7 +41,7 @@ Bookshelf::Application.routes.draw do
   
   
   # Routes for navigation pane
-  match "auth/:provider/callback" => "users#create"
+  match "auth/:provider/callback" => "social_authentications#create"
   match "about" => "info#about", :as => "about"
   match "give_back" => "info#give_back", :as => "give_back"
   match "moderators" => "info#moderators", :as => "moderators"

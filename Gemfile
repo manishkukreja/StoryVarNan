@@ -19,7 +19,7 @@ gem 'mysql2', '0.3.12b4'
 gem 'thinking-sphinx'
 
 
-gem "will_paginate", "~>3.0"
+gem "will_paginate", "3.0.4"
 
 gem 'carrierwave'
 
@@ -59,6 +59,12 @@ group :development, :test do
 end
 
 gem 'factory_girl_rails'
+
+ gem 'omniauth'
+ gem 'omniauth-facebook', '1.4.0'
+
+ gem 'faraday'
+
 
 #gem 'rmagick'
 

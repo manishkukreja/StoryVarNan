@@ -9,6 +9,7 @@ class Book < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :languages
   has_many :line_items
+  has_one :age_group
   letsrate_rateable "audio", "video", "overall"
   accepts_nested_attributes_for :taggings
   
@@ -53,7 +54,17 @@ def self.find_book(params)
     end
     where_sql << params[:narrator]
   end
+
+  if params[:age_group_ids]
+    if params[:language_id] || params[:tag_id] || params[:narrator]
+      where_sql[0] += "OR age_group_id IN (?)"
+    else
+      where_sql = ["age_group_id IN (?)"]
+    end
+    where_sql << params[:age_group_ids]
+  end 
   Book.where(where_sql)
+  
 end
 ###  
   
