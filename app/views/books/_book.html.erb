@@ -1,6 +1,6 @@
 
 <div class="book">
-  <%for book in @books%>
+  <%for book in @books.to_a%>
 	<%= link_to image_tag(book.image_link.to_s,:size => "200x125",:alt => book.name), book%>
 	<div class="main">
 	    <div class="info">

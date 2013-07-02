@@ -36,6 +36,19 @@
 		</div>
 		</br>
 
+		<!-- This code is for age group filter -->
+		<div class="categories">
+			<h2>Age Group</h2>
+			<ul>
+				<% for age in AgeGroup.all %>
+				<li>
+					<%= check_box_tag("age_group_ids[]", age.id, params[:age_group_ids].present? && params[:age_group_ids].include?(age.id.to_s) ? true : false)%><%= age.display_grade%>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		</br>
+
 		<div id="more_filter">
 			<a id="filter"href="#">More Filters</a>
 			<div class="categories filter-box" id="extra_filters"style="display:none">
@@ -69,7 +82,7 @@
 </div>
 
 <div class="books">
-	<% if  @language || @tag || params[:search].present? || params[:narrator].present? %>
+	<% if  @language || @tag || params[:search].present? || params[:narrator].present? || params[:age_group_ids] %>
 	<div class="filters">
 		<strong>Filtering:</strong>
 		<% if params[:search].present? %>
@@ -77,6 +90,11 @@
 		<% end %>
 		<% if @tag %>
 		<span class="filter"><%= @tag.display_name %> <%= link_to "x", params.merge(:tag_id => nil, :page => nil) %></span>
+		<% end %>
+		<% if params[:age_group_ids] %>
+		  <% @age_group.each do |a|%>
+		    <span class="filter"> <%= a.display_grade %> <%= link_to "x", params.merge(:age_group_ids => nil, :page => nil) %></span>
+	      <%end%>	
 		<% end %>
 		<%if @language%>
 		<span class="filter"><%= Language.find(params[:language_id]).name%><%= link_to "x", params.merge(:language_id => nil, :page => nil)%></span>
@@ -158,6 +176,7 @@
 	$(document).ready(function() {
 		$('#more_filter').click(function() {
 			$(".filter-box").slideDown(100);
+			alert(this.val());
 			$('#filter').text("Less Filters");
 			// $('.narrator_name').click(function(){
 			// 	if ($('.narrator_name').is(':checked'))
