@@ -5,7 +5,7 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= content_for?(:title) ? yield(:title) : "Books in StoryVarNan" %> - StoryVarNan</title>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "all" %>
     <%= yield :javascript%>
  	  <%= javascript_include_tag "jquery.min", "http://cdn.sublimevideo.net/js/3s7oes9q.js","jquery-1.9.1",'jquery.raty.js','letsrate.js.erb','wice_grid_init','wice_grid_processor','wice_grid_saved_queries_init' %>
 	  <%= flash[:notice] %>
@@ -73,9 +73,10 @@
             <%= link_to "My BookShelf", reading_list_path(session[:user_credentials_id])%>
                   <b><%=l_items.count%></b> |
               <div id='reading_list' style='display:none' > 
+                <%#= raise l_items.inspect %>
                 <% for book in l_items %>
-                  <li>
-                    <%= link_to book.book.name, book_path(book.book_id)%> <%= button_to "X", book,:method=> :delete,:action=>:destroy, :controller=>:line_items, :remote=> true%></br>
+                  <li> 
+                    <%#= link_to book.book.name, book_path(book.book_id)%> <%= button_to "X", book,:method=> :delete,:action=>:destroy, :controller=>:line_items, :remote=> true%></br>
                   </li>
                 <% end %>
               </div>
