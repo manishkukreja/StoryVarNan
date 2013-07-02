@@ -46,6 +46,12 @@ GEM
       mime-types
       xml-simple
     builder (3.0.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -56,10 +62,24 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    cucumber (1.3.2)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12.0)
+      multi_json (~> 1.3)
+    cucumber-rails (1.3.1)
+      capybara (>= 1.1.2)
+      cucumber (>= 1.2.0)
+      nokogiri (>= 1.5.0)
+      rails (~> 3.0)
+    database_cleaner (1.0.1)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
     excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
     fog (1.3.1)
       builder
       excon (~> 0.13.0)
@@ -71,15 +91,21 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    hike (1.2.2)
+    gherkin (2.12.0)
+      multi_json (~> 1.3)
+    hashie (2.0.5)
+    hike (1.2.3)
     hirb (0.7.1)
+    httpauth (0.2.0)
     i18n (0.6.4)
     innertube (1.0.2)
     journey (1.0.4)
-    jquery-rails (2.2.1)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -91,15 +117,28 @@ GEM
       treetop (~> 1.4.8)
     middleware (0.1.0)
     mime-types (1.23)
-    multi_json (1.7.3)
+    multi_json (1.7.7)
+    multipart-post (1.2.0)
     mysql2 (0.3.12b4)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.7)
-    nokogiri (1.5.9)
-    nokogiri (1.5.9-x86-mingw32)
+    nokogiri (1.5.10)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-facebook (1.4.0)
+      omniauth-oauth2 (~> 1.0.2)
+    omniauth-oauth2 (1.0.3)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     pg (0.15.1)
-    pg (0.15.1-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -123,11 +162,22 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (10.0.4)
+    rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    ref (1.0.4)
+    ref (1.0.5)
     riddle (1.5.6)
+    rspec-core (2.13.1)
+    rspec-expectations (2.13.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.13.1)
+    rspec-rails (2.13.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     ruby-hmac (0.4.0)
     sass (3.2.9)
     sass-rails (3.2.6)
@@ -150,7 +200,7 @@ GEM
       riddle (>= 1.5.6)
     thor (0.18.1)
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
@@ -161,10 +211,11 @@ GEM
       kaminari (>= 0.13.0)
     will_paginate (3.0.4)
     xml-simple (1.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
   ancestry
@@ -173,7 +224,10 @@ DEPENDENCIES
   cancan!
   carrierwave
   coffee-rails (~> 3.2.1)
+  cucumber-rails
+  database_cleaner
   execjs
+  faraday
   fog (~> 1.3.1)
   hirb
   jquery-rails
@@ -181,11 +235,14 @@ DEPENDENCIES
   letsrate
   mail (= 2.4.4)
   mysql2 (= 0.3.12b4)
+  omniauth
+  omniauth-facebook (= 1.4.0)
   pg
   rails (= 3.2.12)
+  rspec-rails
   sass-rails (~> 3.2.3)
   therubyracer
   thinking-sphinx
   uglifier (>= 1.0.3)
   wice_grid (= 3.2.0.pre4)
-  will_paginate (~> 3.0)
+  will_paginate (= 3.0.4)
