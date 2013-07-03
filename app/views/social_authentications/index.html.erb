@@ -1,0 +1,27 @@
+<h1>Listing social_authentications</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Provider</th>
+    <th>Uid</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @social_authentications.each do |social_authentication| %>
+  <tr>
+    <td><%= social_authentication.user_id %></td>
+    <td><%= social_authentication.provider %></td>
+    <td><%= social_authentication.uid %></td>
+    <td><%= link_to 'Show', social_authentication %></td>
+    <td><%= link_to 'Edit', edit_social_authentication_path(social_authentication) %></td>
+    <td><%= link_to 'Destroy', social_authentication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Social authentication', new_social_authentication_path %>

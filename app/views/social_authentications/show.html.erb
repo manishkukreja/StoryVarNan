@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @social_authentication.user_id %>
+</p>
+
+<p>
+  <b>Provider:</b>
+  <%= @social_authentication.provider %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @social_authentication.uid %>
+</p>
+
+
+<%= link_to 'Edit', edit_social_authentication_path(@social_authentication) %> |
+<%= link_to 'Back', social_authentications_path %>
