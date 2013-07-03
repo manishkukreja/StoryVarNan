@@ -93,7 +93,9 @@
 		<% end %>
 		<% if params[:age_group_ids] %>
 		  <% @age_group.each do |a|%>
+		  <%#= raise a.inspect%>
 		    <span class="filter"> <%= a.display_grade %> <%= link_to "x", params.merge(:age_group_ids => nil, :page => nil) %></span>
+		   <!--  <span class="filter"> <%#= a.display_grade %> <%#= link_to "x", params[:age_group_ids]-[a.id] %></span> -->
 	      <%end%>	
 		<% end %>
 		<%if @language%>
@@ -174,22 +176,21 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#more_filter').click(function() {
-			$(".filter-box").slideDown(100);
-			alert(this.val());
-			$('#filter').text("Less Filters");
-			// $('.narrator_name').click(function(){
-			// 	if ($('.narrator_name').is(':checked'))
-			// 		alert("checked")
-	  //  		  $(".filter-box").show();
-			// 	  $('#filter').text("Less Filters");
-			// 	// else
-			// 	  // $("#more_filter").slideUp();
-			// });
+		$('#filter').click(function() {
+			 $(".filter-box").slideToggle(500,function(){
+			 	$('#filter').text(
+			 		$(this).is(':visible') ? "Less Filters" : "More Filters"
+			 		);
+			 });
+			$('.narrator_name').click(function(){
+				if ($('.narrator_name').is(':checked'))
+					alert("checked")
+					$('.filter-box').show();
+			});
 			// $(document).on("click", '.filter-box ul li :checkbox', function(){
       if (this.checked==true)
       alert("click")  
-		});	
+		});
 		$('.filter-box').change(function() {
 			val = $(narrator_name).val();
 			alert('val')
