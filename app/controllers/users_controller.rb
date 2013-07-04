@@ -7,11 +7,15 @@ before_filter :load_current_user , :only => [:edit, :update]
 
   def index
     if is_user_admin?
-      @users = User.all
-    end    
+      @users = User.all   
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
+    end
+    else
+      flash[:notice] = 'You need to be an Admin user to access this page'
+      redirect_to root_url
+
     end
   end
 
