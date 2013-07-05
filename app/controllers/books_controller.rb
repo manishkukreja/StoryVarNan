@@ -42,14 +42,14 @@
 
 
   def edit
-    unless is_user_admin?
+    if is_user_admin?
       @book = Book.find(params[:id])
     end
 
   end
 
   def create
-    unless is_user_admin?  
+    if is_user_admin?  
       if params[:book][:narrator].eql?("Other")
         params[:book][:narrator] = params[:temp_narrator_name]
       end
@@ -68,7 +68,7 @@
   end
 
   def update
-    unless is_user_admin?
+    if is_user_admin?
       @book = Book.find(params[:id])
 
       respond_to do |format|
