@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
   def banned?
     banned_at
   end
+
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!  
+    UserMailer.password_reset_instructions(self).deliver
+  end  
   
   def role?(role)
     role.include? roles.to_s

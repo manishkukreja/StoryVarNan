@@ -75,9 +75,9 @@ $(document).ready(function(){
       <%= link_to "Invite Friends","#", 
       :onclick => "window.open('/books/#{@book.id}/invite_friends','Invite friend','resizable=0, scrollbars=0,height=150,width=200').focus()",:controller=>"books",:action=> 'invite_friends',:remote => true %>
     </div>
-    Audio : <%= rating_for @book, "audio" %>
-    Video : <%= rating_for @book, "video" %>
-    Overall : <%= rating_for @book, "overall" %>
+    <!--Audio : <%= rating_for @book, "audio" %>
+    Video : <%= rating_for @book, "video" %>=end -->
+    Rating : <%= rating_for @book, "overall" %>
     <div id="accordion">	    				
 	     		 <h3 >About <strong><u><%=@book.narrator%></u></strong></h3>
 	     	 		<div> 	     	 			
@@ -113,8 +113,8 @@ $(document).ready(function(){
     <div class="clear"></div>
   </div>
   <ul class="nav horizontal">
-    <li class="selected"><%= tab_link "Transcript of the Book", :view => nil %></li>   <!-- Tab_link method in application_helper -->
-    <li><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
+    <!--<li class="selected"><%= tab_link "Transcript of the Book", :view => nil %></li>   <!-- Tab_link method in application_helper -->
+    <li class="selected"><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
     <li><%= tab_link "Similar books", :view => "similar" %></li>
     <%= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
     <%= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>

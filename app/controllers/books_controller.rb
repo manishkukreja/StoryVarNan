@@ -42,7 +42,7 @@
 
 
   def edit
-    unless is_user_admin?
+    if is_user_admin?
       @book = Book.find(params[:id])
     end
 

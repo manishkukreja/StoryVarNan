@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+
+  default_url_options[:host] = "localhost:3000" 
   
   def feedback(message)
     @message = message
@@ -15,6 +17,12 @@ class UserMailer < ActionMailer::Base
   def invitation(params)
     @message = "Hi #{params[:friend_name]}  Try out this website , its really fun!!!!"
     mail(:to => params[:friend_email],:from => "manishkukreja@gmail.com",:subject => "Invitation to check StoryVarnan" )
+  end  
+
+  def password_reset_instructions(user) 
+    @user = user
+    mail :to => user.email, :from => "ravi.kukreja@gmail.com", :subject =>  "Password Reset Instructions" 
+    #:body => :edit_password_reset_url => edit_password_reset_url(user.perishable_token) 
   end  
   
 end

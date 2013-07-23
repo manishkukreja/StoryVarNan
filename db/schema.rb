@@ -170,11 +170,16 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.boolean  "email_on_reply"
     t.string   "site_url"
     t.string   "role"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "perishable_token",  :default => "", :null => false
   end
+
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end
