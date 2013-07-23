@@ -17,6 +17,8 @@ Bookshelf::Application.routes.draw do
 
   resources :taggings
   
+resources :password_resets
+
   get "taggings/index"
 
   get "taggings/edit"

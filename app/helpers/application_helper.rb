@@ -12,13 +12,16 @@ module ApplicationHelper
     link_to(name, url, :class => (selected ? "selected tab" : "tab"))
   end
 
-def avatar_url(comment_or_user, size = 64)
+  def avatar_url(user)
     default_url = "#{root_url}images/guest.png"
-    token = gravatar_token(comment_or_user)
-    if token.present?
-      "http://gravatar.com/avatar/#{gravatar_token(comment_or_user)}.png?s=#{size}&d=#{CGI.escape(default_url)}"
+    #token = gravatar_token(comment_or_user)
+    #if token.present?
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    if gravatar_id.present?
+      "http://gravatar.com/avatar/#{gravatar_id}.png?s=36&d"
+    #?s=48&d=#{CGI.escape(default_url)}"
     else
-      default_url
+       default_url
     end
   end
 
