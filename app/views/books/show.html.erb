@@ -67,7 +67,7 @@ $(document).ready(function(){
       <%= @book.name %>
     </h1>
     <div class="details">
-      <%= @book.published_at.strftime('%b %d, %Y') %> |
+      <!--<%= @book.published_at.strftime('%b %d, %Y') %> |-->
       <%= raw @book.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
       <% unless @book.published? %>
         <span class="unreleased">NOT YET RELEASED</span>
@@ -116,13 +116,14 @@ $(document).ready(function(){
   </div>
   <ul class="nav horizontal">
     <!--<li class="selected"><%= tab_link "Transcript of the Book", :view => nil %></li>   <!-- Tab_link method in application_helper -->
-    <li class="selected"><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
+    <li class="selected"><%= tab_link pluralize(@book.comments.size, "Comment"), :view => nil %></li>
     <li><%= tab_link "Similar books", :view => "similar" %></li>
-    <%= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
-    <%= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>
+    <%#= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
+    <%#= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>
   </ul>
   <div class="nav_section">
-    <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %></b>
+    <!-- if there are more views, add those in the following array -->
+    <%= %w[similar].include?(params[:view]) ? render(params[:view]) : render("comments") %></b>
     
   </div>
   <%= link_to "List of Books", books_path%>
@@ -130,5 +131,3 @@ $(document).ready(function(){
     <td><%= button_to 'Delete Book', @books_path, :confirm => 'Are you sure?', :method => :delete %></td>
   <%end%>
 </div>
-
-

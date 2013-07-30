@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
 
-  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link,:comments_count, :legacy, :remote_audio_url, :file_sizes,:language_id,:narrator
+  attr_accessible :image, :audio, :name, :description, :notes,:published_at,:position, :permalink,:image_link,:comments_count, :legacy, :remote_audio_url, :file_sizes,:language_id,:narrator, :age_group_id
 
   has_many :taggings,:dependent => :destroy
   has_many :tags, :through => :taggings ,:dependent => :destroy
