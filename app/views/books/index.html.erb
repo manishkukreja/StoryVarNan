@@ -28,8 +28,11 @@
 			<ul>
 				<% for tag in Tag.all %>
 				<!-- <li><%#= link_to_unless(params[:tag_id].to_i == tag.id, tag.display_name, params.merge(:tag_id => tag.id, :page => nil)) %></li> -->
+				<!-- <li> -->
+					<%#= radio_button_tag("tag_id", tag.id, params[:tag_id].present? && tag.id.to_s.eql?(params[:tag_id]) ? true : false)%><%#= tag.name%>
+				<!-- </li> -->
 				<li>
-					<%= radio_button_tag("tag_id", tag.id, params[:tag_id].present? && tag.id.to_s.eql?(params[:tag_id]) ? true : false)%><%= tag.name%>
+					<%= check_box_tag("tag_ids[]", tag.id, params[:tag_ids].present? && params[:tag_ids].include?(tag.id.to_s) ? true : false)%><%= tag.name%>
 				</li>
 				<% end %>
 			</ul>
@@ -82,20 +85,20 @@
 </div>
 
 <div class="books">
-	<% if  @language || @tag || params[:search].present? || params[:narrator].present? || params[:age_group_ids] %>
+	<% if  @language || params[:tag_ids] || params[:search].present? || params[:narrator].present? || params[:age_group_ids] %>
 	<div class="filters">
 		<strong>Filtering:</strong>
 		<% if params[:search].present? %>
 		<span class="filter"><%= params[:search] %> <%= link_to "x", params.merge(:search => nil, :page => nil) %></span>
 		<% end %>
-		<% if @tag %>
-		<span class="filter"><%= @tag.display_name %> <%= link_to "x", params.merge(:tag_id => nil, :page => nil) %></span>
+		<% if params[:tag_ids] %>
+			<% Tag.where("id IN (?)",params[:tag_ids]).each do |tag|%>
+				<span class="filter"><%= tag.name %> <%= link_to "x", params.merge(:tag_ids => updated_category_filter(tag), :page => nil) %></span>
+			<% end %>	
 		<% end %>
 		<% if params[:age_group_ids] %>
-		  <% @age_group.each do |a|%>
-		  <%#= raise a.inspect%>
-		    <span class="filter"> <%= a.display_grade %> <%= link_to "x", params.merge(:age_group_ids => nil, :page => nil) %></span>
-		   <!--  <span class="filter"> <%#= a.display_grade %> <%#= link_to "x", params[:age_group_ids]-[a.id] %></span> -->
+		  <% AgeGroup.where("id IN (?)",params[:age_group_ids]).each do |age|%>
+		    <span class="filter"> <%= age.display_grade %> <%= link_to "x", params.merge(:age_group_ids => updated_age_group_filter(age), :page => nil) %></span>
 	      <%end%>	
 		<% end %>
 		<%if @language%>

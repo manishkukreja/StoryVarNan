@@ -37,7 +37,11 @@ resources :password_resets
   
   
 
-  resources :users
+  resources :users do
+    member do
+      get 'r_list'
+    end
+  end    
 
   root :to => "books#index"
   
@@ -63,6 +67,9 @@ resources :password_resets
     end
     member do
       get :invite_friends
+      get :file_download
+      get :interactive_video
+      get :video_download
     end  
   end    
     

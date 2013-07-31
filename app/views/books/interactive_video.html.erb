@@ -1,0 +1,4 @@
+<h2>Welcome **<%=User.find(session[:user_credentials_id]).username%>**, this video is an interactive video in which you will be presented with various interactive , fun inducing activities , which will help your child to learn and stay focused all along the video, so ENJOY...... </h4>
+<h4>Click
+<%=link_to "here",'#',
+                :onclick => "window.open('#{@book.flash_video_url}','Video','resizable=0, scrollbars=yes,height=550,width=550').focus()",:remote => true %> to start the video</h6>

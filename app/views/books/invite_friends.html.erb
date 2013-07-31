@@ -11,6 +11,8 @@
 <%end%>
 
 <% if params[:friend_name]  && params[:friend_email] && params[:commit]%>
+<%=flash[:notice] %>
+
 	<script type="text/javascript">
 	    window.close();
 	</script>

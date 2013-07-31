@@ -30,43 +30,43 @@
   }
 
   .desc {
-    background: transparent url(/assets/icons/grid/arrow_down.gif) right no-repeat
+    background: transparent url(/images/icons/grid/arrow_down.gif) right no-repeat
   }
   .asc  {
-    background: transparent url(/assets/icons/grid/arrow_up.gif)   right no-repeat
+    background: transparent url(/images/icons/grid/arrow_up.gif)   right no-repeat
   }
 
   .submit.clickable{
-    background: transparent url(/assets/icons/grid/table_refresh.png) no-repeat;
+    background: transparent url(/images/icons/grid/table_refresh.png) no-repeat;
     @include icon-dimensions;
   }
 
   .reset.clickable{
-    background: transparent url(/assets/icons/grid/table.png) no-repeat;
+    background: transparent url(/images/icons/grid/table.png) no-repeat;
     @include icon-dimensions;
   }
 
 
   .wg-show-filter.clickable,
   .wg-hide-filter.clickable{
-    background: transparent url(/assets/icons/grid/page_white_find.png) no-repeat;
+    background: transparent url(/images/icons/grid/page_white_find.png) no-repeat;
     @include icon-dimensions;
   }
 
 
   .export-to-csv-button.clickable{
-    background: transparent url(/assets/icons/grid/page_white_excel.png) no-repeat;
+    background: transparent url(/images/icons/grid/page_white_excel.png) no-repeat;
     @include icon-dimensions;
   }
 
   .clickable.select-all{
-    background: transparent url(/assets/icons/grid/tick_all.png) no-repeat;
+    background: transparent url(/images/icons/grid/tick_all.png) no-repeat;
     @include icon-dimensions;
     float:left;
   }
 
   .clickable.deselect-all{
-    background: transparent url(/assets/icons/grid/untick_all.png) no-repeat;
+    background: transparent url(/images/icons/grid/untick_all.png) no-repeat;
     @include icon-dimensions;
     float:left;
   }
@@ -85,11 +85,11 @@
     }
 
     .collapse-multi-select-icon{
-      background: transparent url(/assets/icons/grid/collapse.gif) no-repeat;
+      background: transparent url(/images/icons/grid/collapse.gif) no-repeat;
     }
 
     .expand-multi-select-icon{
-      background: transparent url(/assets/icons/grid/expand.gif) no-repeat;
+      background: transparent url(/images/icons/grid/expand.gif) no-repeat;
     }
 
   }
@@ -132,7 +132,7 @@
   ul {margin-left: 0 }
 
   a.wice-grid-delete-query .delete-icon{
-    background: transparent url(/assets/icons/grid/delete.png) no-repeat;
+    background: transparent url(/images/icons/grid/delete.png) no-repeat;
     float: left;
     @include icon-dimensions;
   }

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :user_invitee
   has_many :social_authentications
+  has_many :line_items
   letsrate_rater
   
   def banned?

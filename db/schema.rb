@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "authentication_facebooks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "books", :force => true do |t|
     t.string   "name"
     t.string   "permalink"
@@ -30,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.integer  "comments_count"
     t.boolean  "legacy"
     t.text     "file_sizes"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image"
     t.string   "audio"
     t.integer  "seconds"
@@ -40,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.integer  "language_id"
     t.string   "narrator"
     t.integer  "age_group_id"
+    t.string   "flash_video"
   end
 
   create_table "comments", :force => true do |t|
@@ -52,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.string   "referrer"
     t.string   "user_ip"
     t.integer  "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "user_agent"
     t.string   "ancestry"
     t.string   "site_url"
@@ -65,26 +82,26 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.string   "name"
     t.string   "email"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "infos", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "languages", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "line_items", :force => true do |t|
     t.integer  "book_id"
     t.integer  "reading_list_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
   end
 
@@ -115,8 +132,8 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
 
   create_table "reading_lists", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "social_authentications", :force => true do |t|
@@ -130,21 +147,21 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
   create_table "taggings", :force => true do |t|
     t.integer  "book_id"
     t.integer  "tag_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "terminologies", :force => true do |t|
     t.integer  "book_id"
     t.integer  "language_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_invitees", :force => true do |t|
@@ -158,8 +175,8 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
   end
 
   create_table "user_sessions", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -170,8 +187,8 @@ ActiveRecord::Schema.define(:version => 20130415131156417) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "email_on_reply"
     t.string   "site_url"
     t.string   "role"

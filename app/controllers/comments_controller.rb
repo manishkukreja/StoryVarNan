@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       @comments_grid = initialize_grid(Comment.where(:user_id => session[:user_credentials_id].to_s),
       :include => [:book,:user]
       )
-    end    
+    end 
     render :my_comments
     # respond_to do |format|
     #   format.html  

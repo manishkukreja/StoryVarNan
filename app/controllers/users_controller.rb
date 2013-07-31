@@ -110,8 +110,15 @@ before_filter :load_current_user , :only => [:edit, :update]
     end
   end
 
-   private
+   def r_list
+    @reading_list = LineItem.find_all_by_user_id(session[:user_credentials_id])
+  end
+
+
+private
   def load_current_user
     @user = current_user
   end
+
+ 
 end

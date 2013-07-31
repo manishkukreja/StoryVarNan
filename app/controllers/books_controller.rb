@@ -94,7 +94,6 @@
   end
 
   def reading_list_pane
-    #raise params.inspect
   end
 
 
@@ -113,8 +112,9 @@
         already_invited = UserInvitee.find_by_user_id_and_friend_email(session[:user_credentials_id],params[:friend_email])
         already_member = User.find_by_email(params[:friend_email])
         unless already_invited or already_member
-         UserMailer.invitation(params).deliver
-         UserInvitee.create(:user_id=> session[:user_credentials_id], :friend_name=>params[:friend_name],:friend_email=> params[:friend_email],:invitation_date=> Date.today,:invitation_status=> 'Pending' )
+          UserMailer.invitation(params).deliver
+          UserInvitee.create(:user_id=> session[:user_credentials_id], :friend_name=>params[:friend_name],:friend_email=> params[:friend_email],:invitation_date=> Date.today,:invitation_status=> 'Pending')
+          flash[:notice] = "Invitation sent sucessfully"
         end 
       end
   end
@@ -127,6 +127,27 @@
     else 
        @tagging = Tagging.create(:book_id => @book.id,:tag_id => params[:tag_ids].first)
     end   
+  end
+
+  def file_download
+    require 'open-uri'
+    file_path = open(Book.find(params[:id]).flash_video_url.to_s)
+    if file_path
+      send_data file_path.read, disposition: 'attachment'
+    end
+  end
+
+  def video_download
+    require 'open-uri'
+    file_path = open(Book.find(params[:id]).audio_url.to_s)
+    if file_path
+      send_data file_path.read, disposition: 'attachment'
+    end
+  end
+
+  def interactive_video
+    @book = Book.find(params[:id])
+    render layout: false
   end
 
 

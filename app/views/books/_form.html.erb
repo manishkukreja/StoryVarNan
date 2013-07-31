@@ -5,8 +5,6 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  
-
   <div class="field">
     <%= f.label :category %><br />
     <%for category in Tag.all %>
@@ -30,14 +28,22 @@
       </dd>
     </dl>
   </div>
-  <div class="field">
-    <%= f.label "Video Link" ,"Video Link"  %><br />
-    <%= f.text_field :permalink %>
+  <!-- <div class="field"> -->
+    <%#= f.label "Video Link" ,"Video Link"  %><br />
+    <%#= f.file_field :permalink %>
+  <!-- </div> -->
+  </div><div class="field">
+  <%= f.label "Video Link" , "Video Link" %><br />
+    <%= f.file_field :audio%>
   </div>
   <div class="field">
     <%= f.label "Image Link" , "Image Link" %><br />
-    <%= f.text_field :image_link %>
-  </div>  
+    <%= f.file_field :image %>
+  </div>
+    <div class="field">
+    <%= f.label "Interactive Video" , "Interactive Video" %><br />
+    <%= f.file_field :flash_video %>
+  </div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>

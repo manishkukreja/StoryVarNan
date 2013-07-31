@@ -4,77 +4,47 @@ $(document).ready(function(){
   $( "#accordion" ).accordion({ autoHeight: false,collapsible:true,active: false});
 })
 </script>
-
-
 <% title @book.full_name, false %>
-
-
 
 <div id="episode" class="<%= "legacy" if @book.legacy? %>">
 
-	<div class="screenshot">
-		<script type="text/html" id="video_template">
-     	
-     	
- 	    <%= player(:allowfullscreen => 'true',:allowscriptaccess => 'true' )%>
 
-		  <!-- <embed 
-		  		src='<%= @book.audio_url%>' ,
-		  		height='100' ,
-		  		width='100' ,
-		  		
-		  />  --> 
-		  <%if params[:autoplay]%>
-		  	<iframe width="420" height="315" src="<%=@book.audio%>?autoplay=1"  frameborder="0" autoplay="autoplay" allowfullscreen></iframe>
-		  <%else%>
-      
-		  	
-        <iframe width="420" height="315" src="<%=@book.permalink%>" frameborder="0" allowfullscreen></iframe>
-     	 <%end%>
-     </script>
-     	
-     	
-		
-	</div>
+  <div class="screenshot">
+    <script type="text/html" id="video_template">
+      <%= player(:allowfullscreen => 'true',:allowscriptaccess => 'true' )%>
+      <%if params[:autoplay]%>
+        <iframe width="420" height="315" src="<%=@book.audio%>?autoplay=1"  frameborder="0" autoplay="autoplay" allowfullscreen></iframe>
+      <%else%>
+        <iframe width="420" height="315" src="<%=@book.audio%>?autoplay=0" frameborder="0" autoplay="false" allowfullscreen></iframe>
+      <%end%>
+    </script>
+  </div>
 
-  <%# if params[:autoplay] %>
-<!--
-=begin  
- -->    
-  <%# end %> 
- <div class="info<%= " video_info" if params[:autoplay] %>">
- 	
+<div class="info<%= " video_info" if params[:autoplay] %>">
 
-	<!-- <video width="200" height="40" controls="controls">
-		<source src=<%=  @book.audio_url%> type="audio/mp3" />
-	  	<source src=<%=  @book.audio_url%> type="audio/mp4" />
-	 	 <source src=<%=  @book.audio_url%> type="audio/ogg" />
-	  	<source src=<%=  @book.audio_url%> type="audio/webm" />
-	  	<source src=<%=  @book.audio_url%> type="audio/swf" />
-	<object data=<%=  @book.audio_url%> width="320" height="240"> 
-	<embed src=<%=  @book.audio_url%> width="320" height="240">
-				Your browser does not support video
-	</embed>
-	</object> 
-	</video> -->
-<!--	
-=end -->
-
-<%#= raise Rails.application.class.routes.url_helpers.rate_path.inspect %>
 <p id="notice"><%= notice %></p>
-      <h1>
-      <span class="position">#<%= @book.position %></span>
-      <%= @book.name %>
-    </h1>
-    <div class="details">
-      <%= @book.published_at.strftime('%b %d, %Y') %> |
-      <%= raw @book.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
-      <% unless @book.published? %>
-        <span class="unreleased">NOT YET RELEASED</span>
-      <% end %> |
+  <h1>
+    <span class="position">#<%= @book.position %></span>
+    <%= @book.name %>
+  </h1>
+    
+  <div class="details">
+    <%= @book.published_at.strftime('%b %d, %Y') %> |
+    <%= raw @book.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
+    <% unless @book.published? %>
+      <span class="unreleased">NOT YET RELEASED</span>
+    <% end %> |
       <%= link_to "Invite Friends","#", 
-      :onclick => "window.open('/books/#{@book.id}/invite_friends','Invite friend','resizable=0, scrollbars=0,height=150,width=200').focus()",:controller=>"books",:action=> 'invite_friends',:remote => true %>
-    </div>
+      :onclick => "window.open('/books/#{@book.id}/invite_friends','Invite friend','resizable=0, scrollbars=0,height=150,width=200').focus()",:controller=>"books",:action=> 'invite_friends',:remote => true %> |
+
+      <%=link_to "Download Video", video_download_book_path(@book) %> |
+      <%#=link_to "Watch Interactive Video",'#',
+                :onclick => "window.open('#{@book.flash_video_url.to_s}','Video','resizable=0, scrollbars=yes,height=550,width=550').focus()",:remote => true %> 
+      <%=link_to "Watch Interactive Video",'#',
+                :onclick => "window.open('/books/#{params[:id]}/interactive_video','Video','resizable=0, scrollbars=yes,height=550,width=550').focus()",:remote => true %> |
+      <%=link_to "Download Interactive Video", file_download_book_path(@book) %>
+  </div>
+    <%= flash[:notice]%>
     <!--Audio : <%= rating_for @book, "audio" %>
     Video : <%= rating_for @book, "video" %>=end -->
     Rating : <%= rating_for @book, "overall" %>
@@ -107,7 +77,6 @@ $(document).ready(function(){
       <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= book_url(@book) %>" data-text="Reading <%= @book.name %> on Bookshelf" data-count="horizontal" data-via="railscasts">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
     <ul class="downloads horizontal">
-      <li>Download:</li>
       <span class="overlay"></span>
     </ul>
     <div class="clear"></div>
@@ -123,7 +92,7 @@ $(document).ready(function(){
     <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %></b>
     
   </div>
-  <%= link_to "List of Books", books_path%>
+  <h3><%= link_to "Back to List of Books...", books_path%></h3>
   <% if current_user && is_user_admin? %>
     <td><%= button_to 'Delete Book', @books_path, :confirm => 'Are you sure?', :method => :delete %></td>
   <%end%>

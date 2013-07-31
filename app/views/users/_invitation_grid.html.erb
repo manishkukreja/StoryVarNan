@@ -1,4 +1,4 @@
-<%= grid(@invitation_grid,:show_filters => :no) do |g|
+<%= grid(@invitation_grid,:hide_submit_button => false) do |g|
 		g.column :name=> 'Name',:attribute=> 'friend_name' do |task|
 			task.friend_name
 		end 
