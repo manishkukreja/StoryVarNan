@@ -73,9 +73,11 @@ $(document).ready(function(){
   <% end %>
   <!--  #Code for player ends here-->
     </div>
+    <!-- #Twitter code which is being ignored for the beta version...
     <div class="social">
       <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= book_url(@book) %>" data-text="Reading <%= @book.name %> on Bookshelf" data-count="horizontal" data-via="railscasts">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
+  -->
     <ul class="downloads horizontal">
       <span class="overlay"></span>
     </ul>
@@ -83,13 +85,14 @@ $(document).ready(function(){
   </div>
   <ul class="nav horizontal">
     <!--<li class="selected"><%= tab_link "Transcript of the Book", :view => nil %></li>   <!-- Tab_link method in application_helper -->
-    <li class="selected"><%= tab_link pluralize(@book.comments.size, "Comment"), :view => "comments" %></li>
+    <li class="selected"><%= tab_link pluralize(@book.comments.size, "Comment"), :view => nil %></li>
     <li><%= tab_link "Similar books", :view => "similar" %></li>
-    <%= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
-    <%= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>
+    <%#= content_tag :li, link_to("< Previous book", @book.previous), :class => "previous" if @book.previous %>
+    <%#= content_tag :li, link_to("Next book >", @book.next), :class => "next" if !@book.last_published? && @book.next %>
   </ul>
   <div class="nav_section">
-    <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %></b>
+    <!-- if there are more views, add those in the following array -->
+    <%= %w[similar].include?(params[:view]) ? render(params[:view]) : render("comments") %></b>
     
   </div>
   <h3><%= link_to "Back to List of Books...", books_path%></h3>
@@ -97,5 +100,3 @@ $(document).ready(function(){
     <td><%= button_to 'Delete Book', @books_path, :confirm => 'Are you sure?', :method => :delete %></td>
   <%end%>
 </div>
-
-
